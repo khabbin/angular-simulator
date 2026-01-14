@@ -53,16 +53,16 @@ const getSum = (a: number, b: number): number => {
   return a + b;
 }
 
-export const transformText = (string: string, textCase: TextFormat): string => {
+export const transformText = (text: string, textCase: TextFormat): string => {
   switch(textCase) {
-    case TextFormat.UpperCase:
-      return string.toUpperCase();
-    case TextFormat.LowerCase:
-      return string.toLowerCase();
-    case TextFormat.Capitalize:
-      return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    case TextFormat.UPPERCASE:
+      return text.toUpperCase();
+    case TextFormat.LOWERCASE:
+      return text.toLowerCase();
+    case TextFormat.CAPITALIZE:
+      return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
     default:
-      return string;
+      return text;
   }
 }
 
@@ -71,13 +71,13 @@ export const deleteSymbol = (text: string, symbol: string): string => {
 }
 
 enum Status {
-  Loading = 'LOADING',
-  Success = 'SUCCES',
-  Error = 'ERROR'
+  LOADING = 'LOADING',
+  SUCCES = 'SUCCES',
+  ERROR = 'ERROR'
 }
 
 enum TextFormat {
-  UpperCase = 'UPPERCASE',
-  LowerCase = 'LOWERCASE',
-  Capitalize = 'CAPITALIZE'
+  UPPERCASE = 'UPPERCASE',
+  LOWERCASE = 'LOWERCASE',
+  CAPITALIZE = 'CAPITALIZE'
 }
