@@ -1,0 +1,46 @@
+@use './fonts';
+@use './normalize';
+@use './buttons';
+@use './forms';
+
+* {
+  font-family: 'Nunito Sans';
+}
+
+.container {
+  display: block;
+  width: 1180px;
+}
+
+.super-container {
+  display: block;
+  width: 1920px;
+  height: 985px;
+}
+
+:root {
+  --primary-color: #18121E;
+  --secondary-color: #FDFDFD;
+  --yellow-color: #F2BE22;
+  --button-color-green: #1A3E3E;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.semi-bold {
+  font-weight: 600;
+}
