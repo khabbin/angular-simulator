@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import './training'
+import './training';
 import { Colors } from '../enums/Colors';
 import { Collection } from './collection';
 
@@ -13,12 +13,12 @@ import { Collection } from './collection';
 export class AppComponent {
   
   constructor() {
-    this.setLastVisitDate()
-    this.trackVisit()
+    this.setLastVisitDate();
+    this.trackVisit();
   }
   
   isMainColor(color: Colors): boolean {
-    return color === Colors.RED || color === Colors.GREEN ||  color === Colors.BLUE
+    return color === Colors.RED || color === Colors.GREEN ||  color === Colors.BLUE;
   }
   
   setLastVisitDate(): void {
@@ -27,8 +27,8 @@ export class AppComponent {
   }
   
   trackVisit(): void {
-    const currentCount: string = localStorage.getItem('visitCount') || '0'
-    const newCount: number = parseInt(currentCount) + 1
+    const currentCount: string = localStorage.getItem('visitCount') || '0';
+    const newCount: number = parseInt(currentCount) + 1;
     localStorage.setItem('visitCount', newCount.toString());
   }
 }
