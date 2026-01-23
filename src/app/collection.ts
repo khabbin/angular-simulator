@@ -10,7 +10,7 @@ export class Collection<T> {
     return this.items;
   }
   
-  getItem(index: number): T | undefined {
+  getByindex(index: number): T | undefined {
     return this.items[index];
   }
   
@@ -18,11 +18,12 @@ export class Collection<T> {
     this.items = [];
   }
   
-  remove(index: number): void {
+  removeByIndex(index: number): void {
     this.items.splice(index, 1);
   }
   
-  replace(index: number, newItem: T): void {
+  replaceByIndex(index: number, newItem: T): void {
     this.items[index] = newItem;
   }
+  
 }
