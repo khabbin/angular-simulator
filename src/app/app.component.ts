@@ -12,10 +12,9 @@ import { Collection } from './collection';
 export class AppComponent {
   
   companyName: string = 'румтибет'
-  products: string[] = ['banana', 'bread', 'milk'];
-  numbers: number[] = [1, 2, 3, 4, 5];
-  productCollection: Collection<string> = new Collection<string>(this.products);
-  numbersCollection: Collection<number> = new Collection<number>(this.numbers);
+  
+  productCollection: Collection<string> = new Collection<string>(['banana', 'bread', 'milk']);
+  numbersCollection: Collection<number> = new Collection<number>([1, 2, 3, 4, 5]);
   
   constructor() {
     this.saveLastVisitDate();
