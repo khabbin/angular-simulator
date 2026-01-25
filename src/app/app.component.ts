@@ -16,7 +16,6 @@ export class AppComponent {
   numbers: number[] = [1, 2, 3, 4, 5];
   productCollection: Collection<string> = new Collection<string>(this.products);
   numbersCollection: Collection<number> = new Collection<number>(this.numbers);
-  mainColors: Color[] = [Color.RED, Color.BLUE, Color.GREEN];
   
   constructor() {
     this.saveLastVisitDate();
@@ -24,7 +23,8 @@ export class AppComponent {
   }
   
   isMainColor(color: Color): boolean {
-    return this.mainColors.includes(color);
+    const mainColors: Color[] = [Color.RED, Color.BLUE, Color.GREEN];
+    return mainColors.includes(color);
   }
   
   saveLastVisitDate(): void {
