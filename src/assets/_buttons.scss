@@ -1,6 +1,12 @@
 .main-green-btn {
+  display: block;
   border-radius: 4px;
   background-color: #1A3E3E;
   color: var(--secondary-color);
   border: none;
+  cursor: pointer;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5); 
+    }
 }

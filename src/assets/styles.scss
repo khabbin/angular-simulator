@@ -9,9 +9,37 @@
   padding: 0px;
 }
 
+select:focus {
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.ai-center {
+  align-items: center;
+}
+
 .container {
   display: block;
   width: 1180px;
+}
+
+.white-bg{
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.gray-bg{
+  background-color: rgba(243, 245, 244, 1);
 }
 
 .super-container {
@@ -25,6 +53,7 @@
   --secondary-color: #FDFDFD;
   --yellow-color: #F2BE22;
   --button-color-green: #1A3E3E;
+  --bg-color-gray: #F3F5F4;
 }
 
 .fs-14 {
@@ -39,10 +68,22 @@
   font-size: 18px;
 }
 
+.fs-24 {
+  font-size: 24px;
+}
+
+.fs-32 {
+  font-size: 32px;
+}
+
 .bold {
   font-weight: 700;
 }
 
 .semi-bold {
   font-weight: 600;
+}
+
+.extra-bold {
+  font-weight: 800;
 }
