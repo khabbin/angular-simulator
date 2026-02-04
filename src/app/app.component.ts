@@ -3,7 +3,7 @@ import { Color } from '../enums/Color';
 import { Collection } from './collection';
 import { FormsModule } from '@angular/forms';
 import { IService } from '../interfaces/IService';
-import { IWrapperInput } from '../interfaces/IWrapperInput';
+import { IOption } from '../interfaces/IOption';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class AppComponent {
   
   clicksCount: number = 0;
   liveInputValue: string = '';
-  currentTime: string = new Date().toLocaleString();
+  currentDateAndTime: string = new Date().toLocaleString();
   isDateView: boolean = true;
   
   selectedPerson: string = '';
@@ -35,7 +35,7 @@ export class AppComponent {
   productCollection: Collection<string> = new Collection<string>(['banana', 'bread', 'milk']);
   numbersCollection: Collection<number> = new Collection<number>([1, 2, 3, 4, 5]);
   
-  cities: IWrapperInput[]= [
+  cities: IOption<string>[] = [
     { value: 'moscow', label: 'Москва' },
     { value: 'petersburg', label: 'Санкт-Петербург' },
     { value: 'samara', label: 'Самара' },
@@ -43,7 +43,7 @@ export class AppComponent {
     { value: 'ufa', label: 'Уфа' }
   ];
   
-  persons: IWrapperInput[] = [
+  persons: IOption<string>[] = [
     { value: 'jorno', label:'Джорно' },
     { value: 'jotaro', label:'Джотаро' },
     { value: 'josef', label: 'Джозеф'},
@@ -52,7 +52,7 @@ export class AppComponent {
     { value: 'jolin', label: 'Джолин' }
   ];
   
-  items: IService[] = [
+  offers: IService[] = [
     {
       id: 1,
       icon: this.guideIcon,
@@ -77,8 +77,8 @@ export class AppComponent {
   ];
   
   constructor() {
-    setInterval(() => this.currentTime = new Date().toLocaleString(), 1000);
-    setInterval(()=> this.isLoading = false, 2000);
+    setInterval(() => this.currentDateAndTime = new Date().toLocaleString(), 1000);
+    setInterval(() => this.isLoading = false, 2000);
   }
   
   private isMainColor(color: Color): boolean {
@@ -110,7 +110,7 @@ export class AppComponent {
   }
   
   switchBlock(): void {
-    this.isDateView  = !this.isDateView;
+    this.isDateView = !this.isDateView;
   }
   
 }
