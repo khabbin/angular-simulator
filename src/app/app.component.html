@@ -1,6 +1,6 @@
 @if (isLoading) {
   <div class="loader">
-    <img src="/images/loading-icon.svg" alt="">
+    <img src="/images/loading-icon.svg" alt="loading icon">
   </div>
 } @else {
 <section class="banner">
@@ -41,12 +41,12 @@
             <button class="count-manipulate-btn" (click)="reduceCounter()" [disabled]="clicksCount <= 0" id="decrement-button">-</button>
             <span class="clicks-count-text">{{ clicksCount }}</span>
             <button class="count-manipulate-btn" (click)="increaseCounter()" id="increment-button">+</button>
-            <button class="main-green-btn switch-btn" (click)="switchBlock()" id="date-switch-button">Показать дату</button>
+            <button class="main-green-btn switch-btn" (click)="toggleBlock()" id="date-switch-button">Показать дату</button>
           </div>
         } @else {
             <div class="flex ai-center switch-items-container">
               <span class="fs-18 semi-bold">{{ currentDateAndTime }}</span>
-              <button class="main-green-btn switch-btn" (click)="switchBlock()" id="clicker-switch-button">Показать кликер</button>
+              <button class="main-green-btn switch-btn" (click)="toggleBlock()" id="clicker-switch-button">Показать кликер</button>
             </div>
           }
       </div>
@@ -83,14 +83,14 @@
             type="text"
             placeholder="Дата похода"
             onfocus="(type='date')"
-            onblur="((!value) ? type='text' : null)"
+            onblur="(!value) ? type='text' : null"
             [(ngModel)]="selectedTourDate"
             required
           >
           <span class="helper-text fs-14">укажите диапазон</span>
         </div>
         <div class="form-item-container">
-          <select 
+          <select
             name="person-select"
             id="person-select"
             class="bold programs-select"
@@ -156,7 +156,7 @@
         @for (offer of offers; track offer.id) {
           <div class="offer" [class.active-service]="offer.id === selectedServiceId" (click)="selectOffer(offer.id)" id="offer-select-button">
             <div class="icon-bg" [style.background-color]="offer.bgColor">
-              <img [src]="offer.icon" alt="" class="offer-icon">
+              <img [src]="offer.icon" alt="offer icon" class="offer-icon">
             </div>
             <div class="information flex">
               <span class="fs-18 bold">{{ offer.name }}</span>
@@ -168,10 +168,10 @@
       <button class="main-green-btn programs-price-btn" id="program-prices-button">Стоимость программ</button>
     </div>
     <div class="photos-block flex">
-      <img class="top-left-photo" src="images/blue-lagoons-coffee.jpg" alt="">
-      <img class="top-right-photo" src="images/canyon-view-hiker.jpg" alt="">
-      <img class="bottom-left-photo" src="images/winter-extreme-snowmobile.jpg" alt="">
-      <img class="bottom-right-photo" src="images/autumn-mountain-river.jpg" alt="">
+      <img class="top-left-photo" src="images/blue-lagoons-coffee.jpg">
+      <img class="top-right-photo" src="images/canyon-view-hiker.jpg">
+      <img class="bottom-left-photo" src="images/winter-extreme-snowmobile.jpg">
+      <img class="bottom-right-photo" src="images/autumn-mountain-river.jpg">
     </div>
   </div>
 </section>

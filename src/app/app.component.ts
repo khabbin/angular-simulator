@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { IService } from '../interfaces/IService';
 import { IOption } from '../interfaces/IOption';
 
-
 @Component({
   selector: 'app-root',
   imports: [FormsModule],
@@ -22,15 +21,15 @@ export class AppComponent {
   isDateView: boolean = true;
   
   selectedPerson: string = '';
-  selectedTourDate: string = '' ;
+  selectedTourDate: string = '';
   selectedTourLocation: string = '';
   selectedServiceId: number = 0;
   
   companyName: string = 'румтибет';
   
-  private shieldIcon: string = 'images/shield-icon.svg';
-  private guideIcon: string = 'images/guide-icon.svg';
-  private priceTagIcon: string = 'images/price-tag-icon.svg';
+  readonly shieldIcon: string = 'images/shield-icon.svg';
+  readonly guideIcon: string = 'images/guide-icon.svg';
+  readonly priceTagIcon: string = 'images/price-tag-icon.svg';
   
   productCollection: Collection<string> = new Collection<string>(['banana', 'bread', 'milk']);
   numbersCollection: Collection<number> = new Collection<number>([1, 2, 3, 4, 5]);
@@ -44,11 +43,11 @@ export class AppComponent {
   ];
   
   persons: IOption<string>[] = [
-    { value: 'jorno', label:'Джорно' },
-    { value: 'jotaro', label:'Джотаро' },
-    { value: 'josef', label: 'Джозеф'},
+    { value: 'jorno', label: 'Джорно' },
+    { value: 'jotaro', label: 'Джотаро' },
+    { value: 'josef', label: 'Джозеф' },
     { value: 'josuke', label: 'Джоске' },
-    { value: 'jonatan', label: 'Джонатан'},
+    { value: 'jonatan', label: 'Джонатан' },
     { value: 'jolin', label: 'Джолин' }
   ];
   
@@ -109,7 +108,7 @@ export class AppComponent {
     this.clicksCount++;
   }
   
-  switchBlock(): void {
+  toggleBlock(): void {
     this.isDateView = !this.isDateView;
   }
   
