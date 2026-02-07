@@ -1,3 +1,8 @@
+@if (isLoading) {
+  <div class="loader">
+    <img src="/images/loading-icon.svg" alt="loading icon">
+  </div>
+} @else {
 <section class="banner">
   <div class="banner-block">
     <div class="menu-wrapper container">
@@ -8,15 +13,42 @@
       <div class="main-nav">
         <nav>
           <ul class="fast-links">
-            <li><a>Главная</a></li>
-            <li><a>Про гида</a></li>
-            <li><a>Программа тура</a></li>
-            <li><a>Стоимость</a></li>
-            <li><a>Блог</a></li>
-            <li><a>Контакты</a></li>
+            <li>
+              <a>Главная</a>
+            </li>
+            <li>
+              <a>Про гида</a>
+            </li>
+            <li>
+              <a>Программа тура</a>
+            </li>
+            <li>
+              <a>Стоимость</a>
+            </li>
+            <li>
+              <a>Блог</a>
+            </li>
+            <li>
+              <a>Контакты</a>
+            </li>
           </ul>
         </nav>
-        <button class="main-green-btn btn-consultation semi-bold">консультация</button>
+        <button class="main-green-btn btn-consultation semi-bold" id="consultation-button">консультация</button>
+      </div>
+      <div class="container switch-container">
+        @if (isDateView === false) {
+          <div class="flex ai-center switch-items-container">
+            <button class="count-manipulate-btn" (click)="reduceCounter()" [disabled]="clicksCount <= 0" id="decrement-button">-</button>
+            <span class="clicks-count-text">{{ clicksCount }}</span>
+            <button class="count-manipulate-btn" (click)="increaseCounter()" id="increment-button">+</button>
+            <button class="main-green-btn switch-btn" (click)="toggleBlock()" id="date-switch-button">Показать дату</button>
+          </div>
+        } @else {
+            <div class="flex ai-center switch-items-container">
+              <span class="fs-18 semi-bold">{{ currentDateAndTime }}</span>
+              <button class="main-green-btn switch-btn" (click)="toggleBlock()" id="clicker-switch-button">Показать кликер</button>
+            </div>
+          }
       </div>
     </div>
     <div class="title-container container">
@@ -25,30 +57,122 @@
       </h1>
     </div>
     <div class="super-search-forms-box container">
-      <div class="search-forms-box">
-        <div class="form-container">
-          <div class="tour-form select-form">
-            <span class="form-text bold">Локация для тура</span>
-            <img class="expand-arrow-icon" src="/images/expand-arrow-icon.svg" alt="expand arrow">
+      <form class="search-forms-box" #tourForm="ngForm">
+          <div class="form-item-container">
+            <select
+              name="location-select"
+              id="city-select"
+              class="bold programs-select"
+              [(ngModel)]="selectedTourLocation"
+              required
+            >
+              <option value="" hidden>Локация для тура</option>
+              @for (city of cities; track city.value) {
+                <option [value]="city.value">
+                  {{ city.label }}
+                </option>
+              }
+            </select>
+            <span class="helper-text fs-14">выберите из списка</span>
           </div>
-          <span class="helper-text fs-14">выберите из списка</span>
-        </div>
-        <div class="form-container">
-          <div class="tour-form select-form">
-            <span class="form-text bold">Дата похода</span>
-            <img class="calendar-icon" src="/images/calendar-icon.svg" alt="calendar image">
-          </div>
+        <div class="form-item-container">
+          <input
+            id="date-select"
+            name="dateInput"
+            class="date-input bold"
+            type="text"
+            placeholder="Дата похода"
+            onfocus="(type='date')"
+            onblur="(!value) ? type='text' : null"
+            [(ngModel)]="selectedTourDate"
+            required
+          >
           <span class="helper-text fs-14">укажите диапазон</span>
         </div>
-        <div class="form-container">
-          <div class="tour-form select-form">
-            <span class="form-text bold">Участники</span>
-            <img class="expand-arrow-icon" src="/images/expand-arrow-icon.svg" alt="expand arrow">
-          </div>
-          <span class="helper-text fs-14">минимум 4 человека</span>
+        <div class="form-item-container">
+          <select
+            name="person-select"
+            id="person-select"
+            class="bold programs-select"
+            required
+            [(ngModel)]="selectedPerson"
+          >
+            <option value="" hidden>Участники</option>
+              @for (person of persons; track person.value) {
+                <option [value]="person.value">
+                  {{ person.label }}
+                </option>
+              }
+          </select>
+          <span class="helper-text fs-14">выберите из списка</span>
         </div>
-        <button class="send-form-button bold">Найти программу</button>
-      </div>  
+        <button [disabled]="tourForm.invalid" class="send-form-button bold" id="program-select-button">Найти программу</button>
+      </form>
+    </div>
+    <div class="container">
+      <div class="live-input-container flex ai-center">
+        <input
+          id="live-input"
+          type="text"
+          class="live-input"
+          placeholder="Живой инпут"
+          [(ngModel)]="liveInputValue"
+        >
+        <span class="live-input-value">{{ liveInputValue }}</span>
+      </div>
     </div>
   </div>
 </section>
+
+<section class="white-bg tour-programs">
+  <div class="tour-programs-wrapper container">
+    <div class="tour-videos">
+      <img src="/images/mountains.jpg" alt="second video" class="video">
+      <div class="current-video">
+        <button class="play-button" id="tour-video-play-button">
+          <svg class="play-icon" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.74267 0.241409C2.46389 0.0821678 2.14819 -0.00107431 1.82714 1.04681e-05C1.50609 0.00109524 1.19096 0.0864689 0.913263 0.24759C0.63557 0.408711 0.405057 0.63993 0.244785 0.918114C0.0845135 1.1963 0.000103536 1.51169 0 1.83274V13.3406C0.000103536 13.6616 0.0845135 13.977 0.244785 14.2552C0.405057 14.5334 0.63557 14.7646 0.913263 14.9257C1.19096 15.0868 1.50609 15.1722 1.82714 15.1733C2.14819 15.1744 2.46389 15.0911 2.74267 14.9319L12.8113 9.17708C13.0917 9.01666 13.3248 8.785 13.4869 8.50555C13.6489 8.22611 13.7343 7.90879 13.7343 7.58574C13.7343 7.26269 13.6489 6.94538 13.4869 6.66593C13.3248 6.38648 13.0917 6.15482 12.8113 5.99441L2.74267 0.241409Z" fill="#1A3E3E"/>
+          </svg>
+        </button>
+        <img src="/images/wooden-hut-alps.jpg" alt="current video" class="video">
+      </div>
+    </div>
+    <div class="tour-info">
+      <span class="tour-info-pre-title fs-24">о нашем походе</span>
+      <h2 class="tour-info-title fs-32 extra-bold">Исследуйте все горные массивы мира вместе с нами</h2>
+      <p class="tour-info-description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+      <button class="main-green-btn tour-info-button" id="tour-program-button">Программа тура</button>
+    </div>
+  </div>
+</section>
+
+<section class="offers-section">
+  <div class="offers-section-container container">
+    <div class="offers-block">
+      <span class="pre-title fs-24">наше предложение</span>
+      <h2 class="title fs-32 extra-bold">Лучшие программы для тебя</h2>
+      <p class="description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+      <div class="offers-list">
+        @for (offer of offers; track offer.id) {
+          <div class="offer" [class.active-service]="offer.id === selectedServiceId" (click)="selectOffer(offer.id)" id="offer-select-button">
+            <div class="icon-bg" [style.background-color]="offer.bgColor">
+              <img [src]="offer.icon" alt="offer icon" class="offer-icon">
+            </div>
+            <div class="information flex">
+              <span class="fs-18 bold">{{ offer.name }}</span>
+              <p class="fs-14">{{ offer.description }}</p>
+            </div>
+          </div>
+        }
+      </div>
+      <button class="main-green-btn programs-price-btn" id="program-prices-button">Стоимость программ</button>
+    </div>
+    <div class="photos-block flex">
+      <img class="top-left-photo" src="images/blue-lagoons-coffee.jpg">
+      <img class="top-right-photo" src="images/canyon-view-hiker.jpg">
+      <img class="bottom-left-photo" src="images/winter-extreme-snowmobile.jpg">
+      <img class="bottom-right-photo" src="images/autumn-mountain-river.jpg">
+    </div>
+  </div>
+</section>
+}
