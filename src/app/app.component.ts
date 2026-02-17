@@ -141,7 +141,7 @@ export class AppComponent {
       date: '01/04/2023',
       image: 'india-taj-mahal-agra'
     }
-  ]
+  ];
   
   constructor() {
     setInterval(() => this.currentDateAndTime = new Date().toLocaleString(), 1000);
