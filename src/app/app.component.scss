@@ -15,6 +15,27 @@
   }
 }
 
+.main-pre-title {
+  color: var(--yellow-color);
+  line-height: 20px;
+  font-size: 24px;
+}
+
+.main-title {
+  margin-top: 8px;
+  margin-bottom: 40px;
+  line-height: 120%;
+  font-weight: 800;
+  font-size: 32px;
+}
+
+.main-title-wrapper {
+  display: flex;
+  width: 580px;
+  flex-direction: column;
+  align-items: center;
+}
+
 .banner {
   display: flex;
   height: 985px;
@@ -51,6 +72,10 @@
               position: absolute;
               right: 0;
               color: var(--secondary-color);
+              
+              * {
+                color: var(--secondary-color);
+              }
             }
 
             .switch-btn {
@@ -407,18 +432,6 @@
         .tour-info {
           width: 580px;
           height: 398px;
-          
-            &-pre-title {
-              color: var(--yellow-color);
-              
-              line-height: 20px;
-            }
-            
-            &-title {
-              margin-top: 8px;
-              margin-bottom: 40px;
-              line-height: 120%;
-            }
             
             &-description {
               line-height: 150%;
@@ -434,7 +447,6 @@
 }
 
 .offers-section {
-  height: 771px;
   background-color: var(--bg-color-gray);
   display: flex;
   justify-content: center;
@@ -464,17 +476,6 @@
             .programs-price-btn {
               width: 236px;
               height: 52px;
-            }
-            
-            .pre-title {
-              color: var(--yellow-color);
-              line-height: 20px;
-            }
-            
-            .title {
-              margin-top: 8px;
-              margin-bottom: 40px;
-              line-height: 120%;
             }
             
             .description {
@@ -553,4 +554,192 @@
             }
         }
     }
+}
+
+.popular-destinations {
+  min-height: 893px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+    
+    .tour-cards-container {
+      margin: 50px 0px;
+        
+        .tour-card {
+          position: relative;
+          height: 500px;
+          width: 380px;
+          border-radius: 32px;
+          overflow: hidden;
+            
+            .rating-label {
+              gap: 4px;
+              justify-content: center;
+              display: flex;
+              align-items: center;
+              z-index: 2;
+              width: 65px;
+              height: 32px;
+              position: absolute;
+              right: 0;
+              top: 50px;
+              background-color: rgba(253, 253, 253, 0.4);
+              border-bottom-left-radius: 4px;
+              border-top-left-radius: 4px;
+              
+                .rating {
+                  color: var(--green-color)
+                }
+            }
+            
+            .tour-image {
+              position: absolute;
+              height: 100%;
+              width: 100%;
+              object-fit: cover;
+            }
+            
+            &-wrapper {
+              box-sizing: border-box;
+              padding: 0px 32px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              position: absolute;
+              height: 90px;
+              bottom: 0;
+              width: 100%;
+              background-color: rgba(255, 255, 255, 0.2);
+              backdrop-filter: blur(6px);
+              
+                * {
+                  color: var(--secondary-color);
+                }
+                
+                .titles {
+                  display: flex;
+                  flex-direction: column;
+                  width: 195px;
+                  height: 47px;
+                  justify-content: space-between;
+                }
+                
+                .price {
+                  width: 86px;
+                  height: 40px;
+                  background-color: rgba(255, 255, 255, 0.3);
+                  border-radius: 4px;
+                }
+            }
+        }
+    }
+    
+    .tours-rating {
+      width: 244px;
+      height: 52px;
+    }
+}
+
+.travel-blog {
+  box-sizing: border-box;
+  padding-top: 85px;
+  flex-direction: column;
+  height: 1036px;
+  
+    .travel-cards-container {
+      height: 648px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px 20px;
+      margin-bottom: 50px;
+      
+        .blog-article {
+          width: 580px;
+          height: 312px;
+          padding: 16px;
+          box-sizing: border-box;
+            
+            .blog-image{
+              width: 230px;
+              height: 280px;
+            }
+            
+            .blog-information {
+              width: 294px;
+              height: 280px;
+              flex-direction: column;
+              box-sizing: border-box;
+              padding: 16px 0px;
+                
+                .text-wrapper {
+                  display: flex;
+                  gap: 24px;
+                  flex-direction: column;
+                }
+                
+                .date {
+                  color: var(--yellow-color);
+                }
+                
+                .article-link {
+                  color: var(--green-color);
+                }
+            }
+        }
+    }
+    
+    .other-materials-button {
+      height: 52px;
+      width: 220px;
+    }
+}
+
+.system-message {
+  gap: 15px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 350px;
+  height: 70px;
+  background-color: rgba(15, 23, 42, 0.85);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 1);
+    
+    .text-content {
+      width: 253px;
+      display: flex;
+      flex-direction: column;
+      
+        * {
+          color: var(--secondary-color);
+        }
+    }
+}
+
+.message-close-button {
+  background-image: url('/images/message-close-icon.svg');
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+}
+
+.TEST {
+  width: 300px;
+  height: 90px;
+}
+
+.messages-box {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 350px;
+  height: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
 }

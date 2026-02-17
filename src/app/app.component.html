@@ -66,7 +66,7 @@
               [(ngModel)]="selectedTourLocation"
               required
             >
-              <option value="" hidden>Локация для тура</option>
+              <option [value]="undefined" hidden>Локация для тура</option>
               @for (city of cities; track city.value) {
                 <option [value]="city.value">
                   {{ city.label }}
@@ -97,7 +97,7 @@
             required
             [(ngModel)]="selectedPerson"
           >
-            <option value="" hidden>Участники</option>
+            <option [value]="undefined" hidden>Участники</option>
               @for (person of persons; track person.value) {
                 <option [value]="person.value">
                   {{ person.label }}
@@ -138,10 +138,16 @@
       </div>
     </div>
     <div class="tour-info">
-      <span class="tour-info-pre-title fs-24">о нашем походе</span>
-      <h2 class="tour-info-title fs-32 extra-bold">Исследуйте все горные массивы мира вместе с нами</h2>
+      <span class="main-pre-title">о нашем походе</span>
+      <h2 class="main-title">Исследуйте все горные массивы мира вместе с нами</h2>
       <p class="tour-info-description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
-      <button class="main-green-btn tour-info-button" id="tour-program-button">Программа тура</button>
+      <button
+      class="main-green-btn tour-info-button"
+      id="tour-program-button"
+      (click)="systemMessageService.addMessage(messageStatus.WARN, 'Программа не доступна')"
+      >
+      Программа тура
+      </button>
     </div>
   </div>
 </section>
@@ -149,8 +155,8 @@
 <section class="offers-section">
   <div class="offers-section-container container">
     <div class="offers-block">
-      <span class="pre-title fs-24">наше предложение</span>
-      <h2 class="title fs-32 extra-bold">Лучшие программы для тебя</h2>
+      <span class="main-pre-title">наше предложение</span>
+      <h2 class="main-title">Лучшие программы для тебя</h2>
       <p class="description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
       <div class="offers-list">
         @for (offer of offers; track offer.id) {
@@ -165,7 +171,13 @@
           </div>
         }
       </div>
-      <button class="main-green-btn programs-price-btn" id="program-prices-button">Стоимость программ</button>
+      <button
+        class="main-green-btn programs-price-btn"
+        id="program-prices-button"
+        (click)="systemMessageService.addMessage(messageStatus.INFO, 'Стоимость отправлена на почту')"
+      >
+        Стоимость программ
+      </button>
     </div>
     <div class="photos-block flex">
       <img class="top-left-photo" src="images/blue-lagoons-coffee.jpg">
@@ -175,4 +187,84 @@
     </div>
   </div>
 </section>
+
+<section class="gray-bg popular-destinations">
+  <div class="main-title-wrapper">
+    <span class="main-pre-title">по версии отдыхающих</span>
+    <span class="main-title">Популярные направления</span>
+  </div>
+  <div class="container flex space-between tour-cards-container">
+    @for (tour of tours; track tour.id) {
+      <div class="tour-card">
+        <div class="rating-label">
+          <img src="/images/star-rating-icon.svg" alt="star">
+          <span class="rating bold"> {{ tour.rating.toFixed(1) }}</span>
+        </div>
+        <img class="tour-image" [src]="'/images/' + tour.image + '.jpg'" alt="tour image">
+        <div class="tour-card-wrapper">
+          <div class="titles">
+            <span class="title fs-24 bold">{{ tour.title }}</span>
+            <span class="subtitle fs-14">{{ tour.subtitle }}</span>
+          </div>
+          <div class="price flex ai-center jc-center">{{tour.price}} &#36;</div>
+        </div>
+      </div>
+    }
+  </div>
+  <button
+    class="main-green-btn tours-rating"
+    id="tours-rating-button"
+    (click)="systemMessageService.addMessage(messageStatus.SUCCESS, 'Рейтинг получен')"
+  >
+    Рейтинг направлений
+  </button>
+</section>
+
+<section class="travel-blog flex ai-center">
+  <div class="main-title-wrapper">
+    <span class="main-pre-title">по версии отдыхающих</span>
+    <span class="main-title">Популярные направления</span>
+  </div>
+  <div class="container travel-cards-container">
+    @for (article of blogPosts; track article.id) {
+      <div class="blog-article flex ai-center space-between">
+        <img [src]="'/images/' + article.image + '.jpg'" alt="blog article" class="blog-image">
+        <div class="blog-information flex space-between">
+          <div class="text-wrapper">
+            <span class="fs-24 bold">{{ article.title }}</span>
+            <p>{{ article.information }}</p>
+          </div>
+          <div class="flex space-between">
+            <span class="date bold">{{ article.date }}</span>
+            <a class="article-link bold" href="">читать статью</a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <button
+    id="other-materials-button"
+    class="main-green-btn other-materials-button"
+    (click)="systemMessageService.addMessage(messageStatus.ERROR, 'Материалы не доступны')"
+  >
+    Другие материалы
+  </button>
+</section>
 }
+
+<ng-template #systemMessage let-arrayObject="object">
+  <div class="system-message">
+    <img src="/images/message-icon.svg" alt="message-icon">
+    <div class="text-content">
+      <span>{{ arrayObject.type }}</span>
+      <span>{{ arrayObject.message }}</span>
+    </div>
+    <div class="message-close-button" (click)="systemMessageService.closeMessage(arrayObject)"></div>
+  </div>
+</ng-template>
+
+<div class="messages-box">
+  @for (message of systemMessageService.messages; track $index) {
+    <ng-container [ngTemplateOutlet]="systemMessage" [ngTemplateOutletContext]="{ object: message }"></ng-container>
+  }
+</div>

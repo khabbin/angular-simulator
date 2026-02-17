@@ -7,6 +7,8 @@
   font-family: 'Nunito Sans';
   margin: 0px;
   padding: 0px;
+  color: var(--primary-color);
+  box-sizing: border-box;
 }
 
 select:focus {
@@ -15,6 +17,10 @@ select:focus {
 
 input:focus {
   outline: none;
+}
+
+.space-between {
+  justify-content: space-between;
 }
 
 .flex {
@@ -30,7 +36,6 @@ input:focus {
 }
 
 .container {
-  display: block;
   width: 1180px;
 }
 
@@ -52,7 +57,7 @@ input:focus {
   --primary-color: #18121E;
   --secondary-color: #FDFDFD;
   --yellow-color: #F2BE22;
-  --button-color-green: #1A3E3E;
+  --green-color: #1A3E3E;
   --bg-color-gray: #F3F5F4;
 }
 
