@@ -19,6 +19,6 @@ export class SystemMessageService {
   }
 
   closeMessage(messageToRemove: IMessage): void {
-    this.messages = this.messages.filter((msg): boolean => msg !== messageToRemove);
+    this.messages = this.messages.filter((msg: IMessage) => msg !== messageToRemove);
   }
 }

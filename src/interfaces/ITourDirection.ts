@@ -4,5 +4,5 @@ export interface ITourDirection {
   subtitle: string;
   price: number;
   rating: number;
-  image: string
+  image: string;
 }
