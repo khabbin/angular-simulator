@@ -15,7 +15,7 @@ export class MessageService {
 
     setTimeout(() => {
       this.closeMessage(currentObject);
-    }, 5000)
+    }, 5000);
   }
 
   closeMessage(messageToRemove: IMessage): void {
