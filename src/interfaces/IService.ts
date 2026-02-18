@@ -3,5 +3,5 @@ export interface IService {
   icon: string;
   bgColor: string;
   name: string;
-  description: string
+  description: string;
 }
