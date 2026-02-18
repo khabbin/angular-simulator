@@ -8,7 +8,7 @@ import { IOption } from '../interfaces/IOption';
 import { ITourDirection } from '../interfaces/ITourDirection';
 import { IBlogPost } from '../interfaces/IBlogPost';
 import { NgTemplateOutlet } from '@angular/common';
-import { SystemMessageService } from '../app/system-message.service';
+import { MessageService } from './message.service';
 import { LocalStorageService } from './local-storage.service';
 
 @Component({
@@ -18,7 +18,7 @@ import { LocalStorageService } from './local-storage.service';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  systemMessageService: SystemMessageService = inject(SystemMessageService);
+  messageService: MessageService = inject(MessageService);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   
   messageStatus: typeof MessageStatus = MessageStatus;

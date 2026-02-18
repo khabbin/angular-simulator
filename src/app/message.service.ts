@@ -5,7 +5,7 @@ import { MessageStatus } from '../enums/MessageStatus';
 @Injectable({
   providedIn: 'root',
 })
-export class SystemMessageService {
+export class MessageService {
   
   messages: IMessage[] = [];
 
@@ -15,7 +15,7 @@ export class SystemMessageService {
 
     setTimeout(() => {
       this.closeMessage(currentObject);
-    }, 3000)
+    }, 5000)
   }
 
   closeMessage(messageToRemove: IMessage): void {
