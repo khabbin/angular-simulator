@@ -252,19 +252,19 @@
 </section>
 }
 
-<ng-template #systemMessage let-arrayObject="object">
+<ng-template #systemMessage let-object>
   <div class="system-message">
     <img src="/images/message-icon.svg" alt="message-icon">
     <div class="text-content">
-      <span>{{ arrayObject.type }}</span>
-      <span>{{ arrayObject.message }}</span>
+      <span>{{ object.type }}</span>
+      <span>{{ object.message }}</span>
     </div>
-    <div class="message-close-button" (click)="messageService.closeMessage(arrayObject)"></div>
+    <div class="message-close-button" (click)="messageService.closeMessage(object)"></div>
   </div>
 </ng-template>
 
 <div class="messages-box">
   @for (message of messageService.messages; track message) {
-    <ng-container [ngTemplateOutlet]="systemMessage" [ngTemplateOutletContext]="{ object: message }"></ng-container>
+    <ng-container [ngTemplateOutlet]="systemMessage" [ngTemplateOutletContext]="{ $implicit: message }"></ng-container>
   }
 </div>
