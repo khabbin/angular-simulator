@@ -264,7 +264,7 @@
 </ng-template>
 
 <div class="messages-box">
-  @for (message of messageService.messages; track $index) {
+  @for (message of messageService.messages; track message) {
     <ng-container [ngTemplateOutlet]="systemMessage" [ngTemplateOutletContext]="{ object: message }"></ng-container>
   }
 </div>
