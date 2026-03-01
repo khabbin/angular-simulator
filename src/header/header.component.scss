@@ -1,0 +1,112 @@
+.menu-wrapper {
+  height: 120px;
+  width: 100%;
+  background-color: rgba(24, 18, 30, 0.5);
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  column-gap: 6px;
+  flex-direction: column;
+  
+    .switch-container {
+      position: relative;
+      height: 42px;
+    }
+    
+    .switch-items-container {
+      display: flex;
+      justify-content: flex-end;
+      width: 375px;
+      position: absolute;
+      right: 0;
+      color: var(--secondary-color);
+      
+      * {
+        color: var(--secondary-color);
+      }
+    }
+
+    .switch-btn {
+      height: 44px;
+      width: 157px;
+      margin-left: 40px;
+    }
+    
+    .clicks-count-text {
+      background-color: transparent;
+      margin: 0px 15px;
+    }
+    
+    .count-manipulate-btn {
+      height: 24px;
+      width: 12px;
+      background-color: transparent;
+      color: var(--secondary-color);
+    }
+    
+    .company-logo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 137px;
+      height: 72px;
+      gap: 8px;
+
+        img {
+          width: 137px;
+          height: 48px;
+        }
+
+        p {
+          text-align: center;
+          display: block;
+          text-transform: uppercase;
+          color: var(--secondary-color);
+          line-height: 11px;
+          width: 130px;
+          letter-spacing: 5px;
+        }
+    }
+
+    .main-nav {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      width: 831px;
+      height: 44px;
+
+        .fast-links {
+          display: flex;
+          width: 625px;
+          gap: 24px;
+          list-style-type: none;
+
+            a {
+              color: var(--secondary-color);
+              text-decoration: none;
+              transition: color 0.1s ease;
+              cursor: pointer;
+              font-weight: 600;
+              font-size: 18px;
+
+                &:hover {
+                  color: #777777
+                }
+            }
+        }
+        
+        .btn-consultation {
+          text-transform: capitalize;
+          display: block;
+          width: 157px;
+          height: 44px;
+        }
+    }
+}
+
+.active {
+  color: red !important;
+}

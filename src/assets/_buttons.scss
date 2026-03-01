@@ -7,6 +7,19 @@
   cursor: pointer;
     
     &:hover {
-      background-color: rgba(0, 0, 0, 0.5); 
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+}
+
+.main-white-btn {
+  display: block;
+  border-radius: 4px;
+  background-color: var(--secondary-color);
+  color: #1A3E3E !important;
+  border: none;
+  cursor: pointer;
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
     }
 }

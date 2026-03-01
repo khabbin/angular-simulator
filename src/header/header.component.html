@@ -1,0 +1,35 @@
+<header class="menu-wrapper container">
+  <div class="container flex jc-sb">
+    <div class="company-logo">
+      <img src="/images/company-logo.svg" alt="Логотип Румтибет">
+      <p>{{ companyName }}</p>
+    </div>
+    <div class="main-nav">
+      <nav>
+        <ul class="fast-links">
+          @for (link of links; track $index) {
+            <li>
+              <a [routerLink]="link.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ link.title }}</a>
+            </li>
+          }
+        </ul>
+      </nav>
+      <button class="main-white-btn btn-consultation semi-bold" id="consultation-button">консультация</button>
+    </div>
+  </div>
+  <div class="container switch-container">
+    @if (isDateView === false) {
+      <div class="flex ai-center switch-items-container">
+        <button class="count-manipulate-btn" (click)="reduceCounter()" [disabled]="clicksCount <= 0" id="decrement-button">-</button>
+        <span class="clicks-count-text">{{ clicksCount }}</span>
+        <button class="count-manipulate-btn" (click)="increaseCounter()" id="increment-button">+</button>
+        <button class="main-white-btn switch-btn" (click)="toggleBlock()" id="date-switch-button">Показать дату</button>
+      </div>
+    } @else {
+        <div class="flex ai-center switch-items-container">
+          <span class="fs-18 semi-bold">{{ currentDateAndTime }}</span>
+          <button class="main-white-btn switch-btn" (click)="toggleBlock()" id="clicker-switch-button">Показать кликер</button>
+        </div>
+      }
+  </div>
+</header>
