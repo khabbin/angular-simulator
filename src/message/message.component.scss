@@ -1,0 +1,43 @@
+.system-message {
+  gap: 15px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 350px;
+  height: 70px;
+  background-color: rgba(15, 23, 42, 0.85);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 1);
+    
+    .text-content {
+      width: 253px;
+      display: flex;
+      flex-direction: column;
+      
+        * {
+          color: var(--secondary-color);
+        }
+    }
+}
+
+.message-close-button {
+  background-image: url('/images/message-close-icon.svg');
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 7px;
+  top: 7px;
+}
+
+.messages-box {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 350px;
+  height: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
