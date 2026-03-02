@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="container switch-container">
-    @if (isDateView === false) {
+    @if (!isDateView) {
       <div class="flex ai-center switch-items-container">
         <button class="count-manipulate-btn" (click)="reduceCounter()" [disabled]="clicksCount <= 0" id="decrement-button">-</button>
         <span class="clicks-count-text">{{ clicksCount }}</span>
