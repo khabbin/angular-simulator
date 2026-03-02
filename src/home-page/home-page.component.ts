@@ -6,7 +6,6 @@ import { IOption } from '../interfaces/IOption';
 import { ITourDirection } from '../interfaces/ITourDirection';
 import { IBlogPost } from '../interfaces/IBlogPost';
 import { MessageService } from '../app/message.service';
-import { MessageStatus } from '../enums/MessageStatus';
 
 @Component({
   selector: 'app-home-page',
@@ -15,17 +14,14 @@ import { MessageStatus } from '../enums/MessageStatus';
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent {
+  
   messageService: MessageService = inject(MessageService);
-  messageStatus: typeof MessageStatus = MessageStatus;
   selectedPerson!: string;
   selectedTourDate!: string;
   selectedTourLocation!: string;
   selectedServiceId!: number;
-  
   liveInputValue!: string;
-  
 
-  
   readonly shieldIcon: string = 'images/shield-icon.svg';
   readonly guideIcon: string = 'images/guide-icon.svg';
   readonly priceTagIcon: string = 'images/price-tag-icon.svg';

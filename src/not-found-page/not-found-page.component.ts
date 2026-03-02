@@ -1,6 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { MessageService } from '../app/message.service';
-import { MessageStatus } from '../enums/MessageStatus';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-not-found-page',
@@ -9,6 +7,5 @@ import { MessageStatus } from '../enums/MessageStatus';
   styleUrl: './not-found-page.component.scss',
 })
 export class NotFoundPageComponent {
-  messageStatus: typeof MessageStatus = MessageStatus;
-  messageService: MessageService = inject(MessageService);
+  
 }

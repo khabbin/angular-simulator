@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Link } from '../interfaces/ILink';
+import { ILink } from '../interfaces/ILink';
 
 @Component({
   selector: 'app-header',
@@ -14,9 +14,9 @@ export class HeaderComponent {
   currentDateAndTime!: string;
   companyName: string = 'румтибет';
   
-  links: Link[] = [
+  links: ILink[] = [
     {
-      title: 'Главаная',
+      title: 'Главная',
       path: '/'
     },
     {

@@ -14,23 +14,23 @@ export class MessageService {
   }
   
   showInfo(message: string) {
-    this.addMessage(MessageStatus.INFO, message)
+    this.addMessage(MessageStatus.INFO, message);
   }
   
   showError(message: string) {
-    this.addMessage(MessageStatus.ERROR, message)
+    this.addMessage(MessageStatus.ERROR, message);
   }
   
   showWarn(message: string) {
-    this.addMessage(MessageStatus.WARN, message)
+    this.addMessage(MessageStatus.WARN, message);
   }
   
-  showSucces(message: string) {
-    this.addMessage(MessageStatus.SUCCESS, message)
+  showSuccess(message: string) {
+    this.addMessage(MessageStatus.SUCCESS, message);
   }
   
-  private addMessage(type: MessageStatus, message: string): void {
-    const currentObject: IMessage = { type, message };
+  private addMessage(type: MessageStatus, text: string): void {
+    const currentObject: IMessage = { type, text };
     this.messages = [currentObject, ...this.messages];
   
     setTimeout(() => {

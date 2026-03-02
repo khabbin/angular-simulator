@@ -7,23 +7,23 @@
     </div>
     <div class="super-search-forms-box container">
       <form class="search-forms-box" #tourForm="ngForm">
-          <div class="form-item-container">
-            <select
-              name="location-select"
-              id="city-select"
-              class="bold programs-select"
-              [(ngModel)]="selectedTourLocation"
-              required
-            >
-              <option [value]="undefined" hidden>Локация для тура</option>
-              @for (city of cities; track city.value) {
-                <option [value]="city.value">
-                  {{ city.label }}
-                </option>
-              }
-            </select>
-            <span class="helper-text fs-14">выберите из списка</span>
-          </div>
+        <div class="form-item-container">
+          <select
+            name="location-select"
+            id="city-select"
+            class="bold programs-select"
+            [(ngModel)]="selectedTourLocation"
+            required
+          >
+            <option [value]="undefined" hidden>Локация для тура</option>
+            @for (city of cities; track city.value) {
+              <option [value]="city.value">
+                {{ city.label }}
+              </option>
+            }
+          </select>
+          <span class="helper-text fs-14">выберите из списка</span>
+        </div>
         <div class="form-item-container">
           <input
             id="date-select"
@@ -155,7 +155,7 @@
             <span class="title fs-24 bold">{{ tour.title }}</span>
             <span class="subtitle fs-14">{{ tour.subtitle }}</span>
           </div>
-          <div class="price flex ai-center jc-center">{{tour.price}} &#36;</div>
+          <div class="price flex ai-center jc-center">{{ tour.price }} &#36;</div>
         </div>
       </div>
     }
@@ -163,7 +163,7 @@
   <button
     class="main-green-btn tours-rating"
     id="tours-rating-button"
-    (click)="messageService.showSucces('Рейтинг получен')"
+    (click)="messageService.showSuccess('Рейтинг получен')"
   >
     Рейтинг направлений
   </button>

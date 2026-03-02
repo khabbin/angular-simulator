@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Link } from '../interfaces/ILink';
+import { ILink } from '../interfaces/ILink';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -9,7 +9,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  footerServicesLinks: Link[] = [
+  
+  footerServicesLinks: ILink[] = [
     {
       title: 'Прогулки в горы летом',
       path: '/example'
@@ -36,7 +37,7 @@ export class FooterComponent {
     },
   ];
   
-    footerImportantInfoLinks: Link[] = [
+  footerImportantInfoLinks: ILink[] = [
     {
       title: 'Если вы врач - загляните сюда',
       path: '/example'
@@ -54,4 +55,5 @@ export class FooterComponent {
       path: '/example'
     }
   ];
+  
 }

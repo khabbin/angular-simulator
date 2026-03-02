@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { MessageService } from '../app/message.service';
-import { MessageStatus } from '../enums/MessageStatus';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
@@ -10,7 +9,7 @@ import { NgTemplateOutlet } from '@angular/common';
   styleUrl: './message.component.scss',
 })
 export class MessageComponent {
-  messageStatus: typeof MessageStatus = MessageStatus;
+  
   messageService: MessageService = inject(MessageService);
   
 }

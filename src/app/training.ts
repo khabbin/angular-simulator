@@ -47,7 +47,7 @@ export const users: IUser[] = [
   }
 ];
 
-export const filteredUsers = users.filter(user => user.id > 2)
+export const filteredUsers = users.filter(user => user.id > 2);
 
 const getSum = (a: number, b: number): number => {
   return a + b;
@@ -72,7 +72,7 @@ export const deleteSymbol = (text: string, symbol: string): string => {
 
 enum Status {
   LOADING = 'LOADING',
-  SUCCES = 'SUCCES',
+  SUCCESS = 'SUCCESS',
   ERROR = 'ERROR'
 }
 
