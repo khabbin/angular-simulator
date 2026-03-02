@@ -1,0 +1,16 @@
+<div class="messages-box">
+  @for (message of messageService.messages; track message) {
+    <ng-container [ngTemplateOutlet]="systemMessage" [ngTemplateOutletContext]="{ $implicit: message }"></ng-container>
+  }
+</div>
+
+<ng-template #systemMessage let-message>
+  <div class="system-message">
+    <img src="/images/message-icon.svg" alt="message-icon">
+    <div class="text-content">
+      <span>{{ message.type }}</span>
+      <span>{{ message.text }}</span>
+    </div>
+    <div class="message-close-button" (click)="messageService.closeMessage(message)"></div>
+  </div>
+</ng-template>

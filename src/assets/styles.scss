@@ -31,6 +31,10 @@ input:focus {
   justify-content: center;
 }
 
+.jc-sb {
+  justify-content: space-between;
+}
+
 .ai-center {
   align-items: center;
 }
@@ -62,23 +66,27 @@ input:focus {
 }
 
 .fs-14 {
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .fs-16 {
-  font-size: 16px;
+  font-size: 16px !important;
 }
 
 .fs-18 {
-  font-size: 18px;
+  font-size: 18px !important;
 }
 
 .fs-24 {
-  font-size: 24px;
+  font-size: 24px !important;
+}
+
+.fs-26 {
+  font-size: 26px !important;
 }
 
 .fs-32 {
-  font-size: 32px;
+  font-size: 32px !important;
 }
 
 .bold {
@@ -91,4 +99,8 @@ input:focus {
 
 .extra-bold {
   font-weight: 800;
+}
+
+.light {
+  font-weight: 300;
 }

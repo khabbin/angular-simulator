@@ -1,0 +1,219 @@
+.footer {
+  height: 587px;
+  background-color: rgba(26, 62, 62, 1);
+  position: relative;
+  
+    * {
+      color: var(--secondary-color);
+    }
+    
+    .subscription-form {
+      padding: 40px 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      height: 196px;
+      top: -98px;
+      z-index: 1;
+      background-color: var(--secondary-color);
+      border-radius: 6px;
+      
+        .title-box {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          width: 380px;
+          height: 90px;
+          
+            .title {
+              font-weight: 800;
+              font-size: 26px;
+              line-height: 120%;
+              color: var(--primary-color);
+            }
+            
+            .pre-title {
+              font-size: 18px;
+              line-height: 20px;
+              color: var(--yellow-color) !important;
+            }
+        }
+        
+        .email-wrapper {
+          width: 536px;
+          height: 116px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          
+          
+          .title {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 20px;
+            color: var(--primary-color) !important;
+          }
+          
+          .email-form {
+            height: 44px;
+            width: 100%;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            
+            .subscribe-input {
+              flex: 1;
+              height: 44px;
+              border-radius: 4px;
+              padding: 0 16px;
+              font-size: 16px;
+              color: var(--primary-color);
+              background-color: transparent;
+              
+                &::placeholder {
+                  color: var(--primary-color);
+                  opacity: 0.6;
+                }
+                
+                &:focus {
+                  outline: none;
+                  border-color: var(--green-color);
+                }
+            }
+            
+            .subscribe-btn {
+              width: 240px;
+              height: 44px;
+              flex-shrink: 0;
+            }
+          }
+          
+          .description {
+            color: var(--primary-color);
+            
+              a {
+                color: var(--primary-color);
+                text-decoration: underline;
+                text-underline-offset: 3px;
+              }
+          }
+        }
+    }
+    
+    .image-box {
+      height: 100%;
+      width: 14px;
+    }
+    .links-super-title {
+      display: block;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 20px;
+    }
+    
+    .link-arrow {
+      width: 6px;
+      height: 10px;
+      margin: 0px 2px;
+    }
+    
+    a {
+      font-size: 14px;
+      line-height: 18px ;
+    }
+    
+    .links-box {
+      display: flex;
+      gap: 16px;
+      flex-direction: column;
+    }
+    .company-info-container {
+      position: relative;
+      width: 480px;
+      height: 263px;
+      
+        .title {
+          display: block;
+          font-size: 20px;
+          font-weight: 700;
+          line-height: 24px;
+          margin-bottom: 17px;
+        }
+        
+        .description {
+          width: 456px;
+          font-size: 14px;
+        }
+        
+        .social-wrapper {
+          flex-direction: column;
+          position: absolute;
+          bottom: 0;
+          height: 82px;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          
+            .contacts-wrapper {
+              align-items: flex-start;
+              display: flex;
+              gap: 24px;
+            }
+          
+            .media {
+              align-items: center;
+              width: 176px;
+              height: 32px;
+              display: flex;
+              gap: 16px;
+              
+                img {
+                  height: 27px;
+                  width: 27px;
+                }
+                
+                .vk-icon {
+                  height: 32px;
+                  width: 32px;
+                }
+            }
+        }
+    }
+    
+    .services-container {
+      width: 280px;
+      height: 232px;
+      margin-left: 20px;
+      margin-right: 120px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .important-info-container {
+      width: 280px;
+      height: 200px;
+    }
+    
+    .footer-bottom {
+      position: absolute;
+      bottom: 0;
+      height: 66px;
+      width: 100%;
+      background-color: rgba(24, 18, 30, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+        
+        .wrapper {
+          width: 1180px;
+          height: 18px;
+          display: flex;
+          justify-content: space-between;
+          
+            * {
+              color: var(--secondary-color);
+            }
+        }
+    }
+}
