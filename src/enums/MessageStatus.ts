@@ -1,6 +1,6 @@
 export enum MessageStatus {
   ERROR = 'Error',
-  WARN = 'Pending',
+  WARN = 'Warn',
   INFO = 'Info',
   SUCCESS = 'Success'
 }

@@ -65,9 +65,10 @@
           type="text"
           class="live-input"
           placeholder="Живой инпут"
-          [(ngModel)]="liveInputValue"
+          [value]="liveInputVal()"
+          (input)="updateInput($event)"
         >
-        <span class="live-input-value">{{ liveInputValue }}</span>
+        <span class="live-input-value">{{ liveInputVal() }}</span>
       </div>
     </div>
   </div>
@@ -93,7 +94,7 @@
       <button
       class="main-green-btn tour-info-button"
       id="tour-program-button"
-      (click)="messageService.showWarn('Программа не доступна')"
+      (click)="messageService.showWarn('Информация выслана на почту')"
       >
         Программа тура
       </button>

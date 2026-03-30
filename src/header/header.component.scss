@@ -93,7 +93,7 @@
               font-size: 18px;
 
                 &:hover {
-                  color: #777777
+                  color: #777777;
                 }
             }
         }
@@ -108,5 +108,5 @@
 }
 
 .active {
-  color: red !important;
+  color: var(--green-color) !important;
 }
