@@ -14,23 +14,22 @@ export class UserService {
   loaderService: LoaderService = inject(LoaderService);
   userApiService: UserApiService = inject(UserApiService);
   
-  private userSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
-  users$: Observable<IUser[]> = this.userSubject.asObservable();
+  private usersSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
+  users$: Observable<IUser[]> = this.usersSubject.asObservable();
   
   getUsers(): IUser[] {
-    return this.userSubject.getValue();
+    return this.usersSubject.getValue();
   }
   
   setUsers(users: IUser[]): void {
-    this.userSubject.next(users);
+    this.usersSubject.next(users);
   }
   
   loadUsers(): Observable<IUser[]> {
     this.loaderService.showSpinner();
     return this.userApiService.getUsers()
       .pipe(
-        delay(2000),
-        catchError(error => {
+        catchError(() => {
           this.messageService.showError('Ошибка');
           return of([]);
         }),

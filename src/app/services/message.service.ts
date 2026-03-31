@@ -14,7 +14,7 @@ export class MessageService {
   
   closeMessage(messageToRemove: IMessage): void {
     const messageList: IMessage[] = this.messagesSubject.getValue();
-    this.messagesSubject.next(messageList.filter(msg => msg !== messageToRemove));
+    this.messagesSubject.next(messageList.filter((msg: IMessage) => msg !== messageToRemove));
   }
   
   showInfo(message: string): void {

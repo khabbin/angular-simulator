@@ -65,10 +65,9 @@
           type="text"
           class="live-input"
           placeholder="Живой инпут"
-          [value]="liveInputVal()"
-          (input)="updateInput($event)"
+          [(ngModel)]="liveInputValue"
         >
-        <span class="live-input-value">{{ liveInputVal() }}</span>
+        <span class="live-input-value">{{ liveInputValue }}</span>
       </div>
     </div>
   </div>

@@ -23,12 +23,6 @@ export class HomePageComponent {
   selectedTourLocation!: string;
   selectedServiceId!: number;
   liveInputValue!: string;
-  
-  liveInputVal = signal('');
-  
-  updateInput(event: any) {
-    this.liveInputVal.set(event.target.value);
-  }
 
   readonly shieldIcon: string = 'images/shield-icon.svg';
   readonly guideIcon: string = 'images/guide-icon.svg';
