@@ -7,7 +7,7 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 export class LoaderService {
   
   private loadingCountSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  readonly isLoading$: Observable<boolean> = this.loadingCountSubject.asObservable()
+  isLoading$: Observable<boolean> = this.loadingCountSubject.asObservable()
   .pipe(
     map((count: number) => count > 0)
   );
