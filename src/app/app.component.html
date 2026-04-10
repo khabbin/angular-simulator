@@ -1,14 +1,9 @@
 <div class="main-wrapper">
   <app-header></app-header>
   <app-message></app-message>
+  <app-loader></app-loader>
   <main class="content">
-    @if (isLoading) {
-      <div class="loader">
-        <img src="/images/loading-icon.svg" alt="loading icon">
-      </div>
-    } @else {
-      <router-outlet></router-outlet>
-    }
+    <router-outlet></router-outlet>
   </main>
   <app-footer></app-footer>
 </div>

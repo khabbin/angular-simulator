@@ -1,11 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Collection } from '../app/collection';
 import { IService } from '../interfaces/IService';
 import { IOption } from '../interfaces/IOption';
 import { ITourDirection } from '../interfaces/ITourDirection';
 import { IBlogPost } from '../interfaces/IBlogPost';
-import { MessageService } from '../app/message.service';
+import { MessageService } from '../app/services/message.service';
+import { LoaderService } from '../app/services/loader.service';
 
 @Component({
   selector: 'app-home-page',
@@ -15,6 +16,7 @@ import { MessageService } from '../app/message.service';
 })
 export class HomePageComponent {
   
+  loaderService: LoaderService = inject(LoaderService);
   messageService: MessageService = inject(MessageService);
   selectedPerson!: string;
   selectedTourDate!: string;
