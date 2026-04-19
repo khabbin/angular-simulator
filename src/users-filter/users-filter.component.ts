@@ -11,13 +11,13 @@ import { debounceTime, distinctUntilChanged, map, tap } from 'rxjs';
 })
 export class UsersFilterComponent {
   
-  @Output() changeFilter = new EventEmitter<string>();
-  private destroyRef = inject(DestroyRef);
+  @Output() changeFilter: EventEmitter<string> = new EventEmitter<string>();
+  private destroyRef: DestroyRef = inject(DestroyRef);
   
-  searchUserControl: FormControl<string | null> = new FormControl('');
+  filterUserControl: FormControl<string | null> = new FormControl('');
   
   ngOnInit() {
-    this.searchUserControl.valueChanges.pipe(
+    this.filterUserControl.valueChanges.pipe(
       debounceTime(200),
       distinctUntilChanged(),
       map((value: string | null) => value ? value.trim().toLowerCase() : ''),

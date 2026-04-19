@@ -29,16 +29,14 @@ export class UserService {
   }
   
   loadUsers(): Observable<IUser[]> {
-    const cachedUsers = this.localStorageService.getItem<IUser[]>('users');
+    const cachedUsers: IUser[] | null = this.localStorageService.getItem<IUser[]>('users');
     if (cachedUsers && cachedUsers.length > 0) {
-      this.usersSubject.next(cachedUsers);
       return of(cachedUsers);
     }
     this.loaderService.showSpinner();
     return this.userApiService.getUsers()
       .pipe(
         tap((users: IUser[]) => {
-          this.usersSubject.next(users);
           this.localStorageService.setItem('users', users);
         }),
         catchError(() => {
@@ -50,20 +48,19 @@ export class UserService {
   }
   
   addUser(user: IUser): void {
-    const users = this.getUsers();
-    if (user) {
-      this.messageService.showSuccess(`Пользователь ${user.name} добавлен`);
-    }
+    const users: IUser[] = this.getUsers();
+    this.messageService.showSuccess(`Пользователь ${user.name} добавлен`);
     this.setUsers([user, ...users]);
   }
   
   deleteUser(userid: number): void {
-    const users: IUser[] = this.getUsers().filter((user: IUser) => user.id !== userid);
+    const users: IUser[] = this.getUsers();
+    const fileredUsers: IUser[] = users.filter((user: IUser) => user.id !== userid);
     const deletedUser: IUser | undefined = users.find((user: IUser) => user.id === userid);
     if (deletedUser) {
       this.messageService.showSuccess(`Пользователь ${deletedUser.name} удален`);
     }
-    this.setUsers(users);
+    this.setUsers(fileredUsers);
   }
   
 }

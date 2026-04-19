@@ -3,7 +3,7 @@
 <app-create-user (createUser)="onAddUser($event)"></app-create-user>
 <div class="users-container">
   @for (user of filteredUsers$ | async; track user.id) {
-    <app-user-card [user]="user" (delete)="onDeleteUser($event)"></app-user-card>
+    <app-user-card [user]="user" (deleteUser)="onDeleteUser($event)"></app-user-card>
   } @empty() {
     <div class="error-message">Нет пользователей для отображения</div>
   }
