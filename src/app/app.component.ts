@@ -3,7 +3,7 @@ import { Color } from '../enums/Color';
 import { MessageStatus } from '../enums/MessageStatus';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from './services/message.service';
-import { LocalStorageService } from './local-storage.service';
+import { LocalStorageService } from './services/local-storage.service';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { HeaderComponent } from '../header/header.component';
