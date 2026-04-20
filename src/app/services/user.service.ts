@@ -49,18 +49,18 @@ export class UserService {
   
   addUser(user: IUser): void {
     const users: IUser[] = this.getUsers();
-    this.messageService.showSuccess(`Пользователь ${user.name} добавлен`);
     this.setUsers([user, ...users]);
+    this.messageService.showSuccess(`Пользователь ${ user.name } добавлен`);
   }
   
   deleteUser(userid: number): void {
     const users: IUser[] = this.getUsers();
-    const fileredUsers: IUser[] = users.filter((user: IUser) => user.id !== userid);
     const deletedUser: IUser | undefined = users.find((user: IUser) => user.id === userid);
     if (deletedUser) {
-      this.messageService.showSuccess(`Пользователь ${deletedUser.name} удален`);
+      const fileredUsers: IUser[] = users.filter((user: IUser) => user.id !== userid);
+      this.messageService.showSuccess(`Пользователь ${ deletedUser.name } удален`);
+      this.setUsers(fileredUsers);
     }
-    this.setUsers(fileredUsers);
   }
   
 }
