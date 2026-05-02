@@ -1,0 +1,75 @@
+<div class="user-card">
+      <div class="user-info">
+        
+        <h3 class="user-name extra-bold">{{ user.name }}</h3>
+        <p class="user-username bold">@{{ user.username }}</p>
+        
+        <div class="user-info-section">
+            <h2 class="title fs-12 extra-bold">Контакты</h2>
+            <div class="items-wrapper">
+              <div class="wrapper-item">
+                <span class="label">Эл. почта:</span>
+                <span class="value-beige">{{ user.email }}</span>
+              </div>
+              <div class="wrapper-item">
+                <span class="label">Телефон:</span>
+                <span class="value">{{ user.phone }}</span>
+              </div>
+              <div class="wrapper-item">
+                <span class="label">Веб-сайт:</span>
+                <span class="value-beige">{{ user.website || 'Неизвестно' }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="user-info-section">
+            <h2 class="title fs-12 extra-bold">Адрес Проживания</h2>
+            <div class="items-wrapper">
+              <div class="wrapper-item">
+                <span class="label">Город:</span>
+                <span class="value">{{ user.address.city }}</span>
+              </div>
+              <div class="wrapper-item">
+                <span class="label">Улица:</span>
+                <span class="value">{{ user.address.street }}</span>
+              </div>
+              <div class="wrapper-item">
+                <span class="label">Офис:</span>
+                <span class="value">{{ user.address.suite || 'Неизвестно' }}</span>
+              </div>
+              <div class="wrapper-item">
+                <span class="label">Индекс:</span>
+                <span class="value">{{ user.address.zipcode }}</span>
+              </div>
+              <div class="wrapper-item">
+                <span class="label">Координаты:</span>
+                <div class="geolocation">
+                  <span class="value">{{ user.address.geo.lat }}</span>
+                  <span class="value">{{ user.address.geo.lng }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="user-info-section">
+            <h2 class="title fs-12 extra-bold">Место работы</h2>
+            <div class="items-wrapper">
+              <div class="wrapper-item">
+                <span class="label">Компания:</span>
+                <span class="value">{{ user.company.name }}</span>
+              </div>
+              <div class="wrapper-item">
+                <span class="label">Миссия:</span>
+                <span class="value italic-text">{{ user.company.catchPhrase || 'Неизвестно' }}</span>
+              </div>
+              <div class="wrapper-item job-info">
+                <span class="label">Специализация:</span>
+                <span class="value">{{ user.company.bs || 'Неизвестно' }}</span>
+              </div>
+            </div>
+          </div>
+          
+          <button id="user-delete-button" (click)="onDelete(user.id)">Удалить</button>
+          
+      </div>
+    </div>
