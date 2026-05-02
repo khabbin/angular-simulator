@@ -36,9 +36,6 @@ export class UserService {
     this.loaderService.showSpinner();
     return this.userApiService.getUsers()
       .pipe(
-        tap((users: IUser[]) => {
-          this.localStorageService.setItem('users', users);
-        }),
         catchError(() => {
           this.messageService.showError('Ошибка');
           return of([]);
