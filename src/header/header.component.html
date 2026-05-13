@@ -32,4 +32,21 @@
         </div>
       }
   </div>
+  <p-toggleswitch [ngModel]="theme$ | async",
+    (onChange)="toggleTheme($event)"
+  >
+    <ng-template #handle let-checked="checked">
+        <fa-icon [icon]="checked ? faMoon : faSun"></fa-icon>
+    </ng-template>
+  </p-toggleswitch>
+  <div class="card flex justify-center">
+    <p-selectbutton
+      [options]="colorPresets"
+      [ngModel]="colorPreset$ | async"
+      optionLabel="name"
+      optionValue="value"
+      aria-labelledby="basic"
+      (onChange)="onColorPresetChange($event)"
+    />
+  </div>
 </header>
