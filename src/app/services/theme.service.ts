@@ -47,7 +47,7 @@ export class ThemeService {
   onColorPresetChange(presetValue: Theme): void {
     const preset: ITheme | undefined = this.colorPresets.find(p => p.value === presetValue);
     if (preset) {
-      localStorage.setItem('colorPresetLabel', preset.name);
+      this.localStorageService.setItem('colorPresetLabel', preset.name);
       this.colorPresetSubject.next(preset.value);
       usePreset(preset.preset);
     }

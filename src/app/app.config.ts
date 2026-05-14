@@ -9,7 +9,7 @@ import { Theme } from '../enums/Theme';
 import { routes } from './app.routes';
 
 const getTheme = () => {
-  const savedTheme: string= (localStorage.getItem('colorPresetLabel'))!;
+  const savedTheme: string= (localStorage.getItem('colorPresetLabel')) || 'Aura';
   switch(savedTheme) {
     case Theme.NORA:
       return Nora;
