@@ -11,7 +11,7 @@ import { AsyncPipe } from '@angular/common';
 import { SelectButtonChangeEvent, SelectButtonModule } from 'primeng/selectbutton';
 import { ITheme } from '../interfaces/ITheme';
 import { Observable } from 'rxjs';
-import { ColorPreset } from '../enums/ColorPreset';
+import { Theme } from '../enums/Theme';
 
 @Component({
   selector: 'app-header',
@@ -24,7 +24,7 @@ export class HeaderComponent {
   faMoon: IconDefinition = faMoon;
   faSun: IconDefinition = faSun;
   themeService: ThemeService = inject(ThemeService);
-  theme$ = this.themeService.theme$;
+  theme$: Observable<boolean> = this.themeService.theme$;
   isDateView: boolean = true;
   clicksCount: number = 0;
   currentDateAndTime!: string;
@@ -59,14 +59,13 @@ export class HeaderComponent {
   
   toggleTheme(theme: ToggleSwitchChangeEvent): void {
     this.themeService.toggleTheme(theme.checked)
-    console.log(theme.checked)
   }
   
   colorPresets: ITheme[] = this.themeService.colorPresets;
-  colorPreset$: Observable<ColorPreset> = this.themeService.colorPreset$;
+  colorPreset$: Observable<Theme> = this.themeService.colorPreset$;
   
   onColorPresetChange(event: SelectButtonChangeEvent): void {
-    this.themeService.onColorPresetChange(event.value as ColorPreset);
+    this.themeService.onColorPresetChange(event.value as Theme);
   }
   
 }

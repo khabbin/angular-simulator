@@ -6,7 +6,7 @@ import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
 import { usePreset } from '@primeuix/themes';
 import { ITheme } from '../../interfaces/ITheme';
-import { ColorPreset } from '../../enums/ColorPreset';
+import { Theme } from '../../enums/Theme';
 
 @Injectable({
   providedIn: 'root',
@@ -22,20 +22,20 @@ export class ThemeService {
     })
   );
   
-  colorPresetSubject: BehaviorSubject<ColorPreset> = new BehaviorSubject<ColorPreset>(ColorPreset.LARA);
-  colorPreset$: Observable<ColorPreset> = this.colorPresetSubject.asObservable();
+  colorPresetSubject: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(Theme.LARA);
+  colorPreset$: Observable<Theme> = this.colorPresetSubject.asObservable();
   colorPresets: ITheme[] = [
-    { name: 'Aura', preset: Aura, value: ColorPreset.AURA },
-    { name: 'Lara', preset: Lara, value: ColorPreset.LARA },
-    { name: 'Nora', preset: Nora, value: ColorPreset.NORA }
+    { name: 'Aura', preset: Aura, value: Theme.AURA },
+    { name: 'Lara', preset: Lara, value: Theme.LARA },
+    { name: 'Nora', preset: Nora, value: Theme.NORA }
   ];
   
   constructor() {
     const savedTheme = this.localStorageService.getItem<boolean>('theme') ?? false;
     this.themeSubject.next(savedTheme);
     
-    const savedPresetLabel: string = this.localStorageService.getItem<string>('colorPresetLabel') ?? 'Lara';
-    const presetObject: ColorPreset = this.colorPresets.find(p => p.name === savedPresetLabel)?.value || ColorPreset.LARA;
+    const savedPresetLabel: string = localStorage.getItem('colorPresetLabel') ?? 'Aura';
+    const presetObject: Theme = this.colorPresets.find(p => p.name === savedPresetLabel)?.value || Theme.AURA;
     this.colorPresetSubject.next(presetObject);
   }
 
@@ -44,10 +44,10 @@ export class ThemeService {
     this.localStorageService.setItem('theme', theme);
   }
   
-  onColorPresetChange(presetValue: ColorPreset): void {
+  onColorPresetChange(presetValue: Theme): void {
     const preset: ITheme | undefined = this.colorPresets.find(p => p.value === presetValue);
     if (preset) {
-      this.localStorageService.setItem('colorPresetLabel', preset.name);
+      localStorage.setItem('colorPresetLabel', preset.name);
       this.colorPresetSubject.next(preset.value);
       usePreset(preset.preset);
     }

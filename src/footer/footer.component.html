@@ -31,16 +31,6 @@
           <fa-icon [icon]="faVk" class="vk-icon"></fa-icon>
           <fa-icon [icon]="faPinterest" class="media-icon"></fa-icon>
           <fa-icon [icon]="faSkype" class="media-icon"></fa-icon>
-          
-          
-          
-          
-          
-          
-          <!-- <img src="/images/telegram-icon.svg" alt="telegram">
-          <img class="vk-icon" src="/images/vk-icon.svg" alt="vk">
-          <img src="/images/pinterest-icon.svg" alt="pinterest">
-          <img src="/images/skype-icon.svg" alt="skype"> -->
         </div>
       </div>
     </div>
@@ -50,8 +40,7 @@
         @for (link of footerServicesLinks; track link.title) {
           <div class="flex">
             <div class="image-box">
-              <!-- <img src="/images/link-arrow-icon.svg" class="link-arrow"> -->
-              <fa-icon [icon]="angledownicon"></fa-icon>
+              <fa-icon [icon]="faAngledownicon"></fa-icon>
             </div>
             <a [routerLink]="link.path">
               {{ link.title }}
@@ -66,8 +55,7 @@
         @for (link of footerImportantInfoLinks; track link.title) {
           <div class="flex">
             <div class="image-box">
-              <!-- <img src="/images/link-arrow-icon.svg" class="link-arrow"> -->
-               <fa-icon [icon]="angledownicon"></fa-icon>
+               <fa-icon [icon]="faAngledownicon"></fa-icon>
             </div>
             <a [routerLink]="link.path">
               {{ link.title }}

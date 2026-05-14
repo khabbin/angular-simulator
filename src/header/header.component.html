@@ -32,7 +32,9 @@
         </div>
       }
   </div>
-  <p-toggleswitch [ngModel]="theme$ | async",
+  <p-toggleswitch
+    id="theme-switch-button"
+    [ngModel]="theme$ | async",
     (onChange)="toggleTheme($event)"
   >
     <ng-template #handle let-checked="checked">
@@ -41,6 +43,7 @@
   </p-toggleswitch>
   <div class="card flex justify-center">
     <p-selectbutton
+      id="preset-select-button"
       [options]="colorPresets"
       [ngModel]="colorPreset$ | async"
       optionLabel="name"

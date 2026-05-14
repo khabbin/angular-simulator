@@ -1,8 +1,8 @@
 import { Preset } from "@primeuix/themes/types";
-import { ColorPreset } from "../enums/ColorPreset";
+import { Theme } from "../enums/Theme";
 
 export interface ITheme {
   name: string;
-  value: ColorPreset;
+  value: Theme;
   preset: Preset;
 }

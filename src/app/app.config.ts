@@ -5,18 +5,18 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import Nora from '@primeuix/themes/nora';
 import Lara from '@primeuix/themes/lara';
-import { ColorPreset } from '../enums/ColorPreset';
+import { Theme } from '../enums/Theme';
 import { routes } from './app.routes';
 
-const getColorPreset = () => {
-  const savedTheme: string = JSON.parse(localStorage.getItem('colorPresetLabel') ?? JSON.stringify(ColorPreset.AURA));
+const getTheme = () => {
+  const savedTheme: string= (localStorage.getItem('colorPresetLabel'))!;
   switch(savedTheme) {
-    case ColorPreset.NORA:
-      return Nora
-    case ColorPreset.LARA:
-      return Lara
+    case Theme.NORA:
+      return Nora;
+    case Theme.LARA:
+      return Lara;
     default:
-      return Aura
+      return Aura;
   }
 }
 export const appConfig: ApplicationConfig = {
@@ -27,13 +27,11 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     providePrimeNG({
             theme: {
-                preset: getColorPreset(),
+                preset: getTheme(),
                 options: {
                   darkModeSelector: '.p-dark'
                 }
             }
-            
-        })
+    })
   ]
-  
 };
