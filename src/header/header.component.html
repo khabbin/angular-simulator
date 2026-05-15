@@ -34,7 +34,7 @@
   </div>
   <p-toggleswitch
     id="theme-switch-button"
-    [ngModel]="theme$ | async",
+    [ngModel]="isDarkMode$ | async",
     (onChange)="toggleTheme($event)"
   >
     <ng-template #handle let-checked="checked">

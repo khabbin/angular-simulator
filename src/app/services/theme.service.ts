@@ -13,43 +13,43 @@ import { Theme } from '../../enums/Theme';
 })
 export class ThemeService {
   
-  localStorageService: LocalStorageService = inject(LocalStorageService);
-  private themeSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public theme$: Observable<boolean> = this.themeSubject.asObservable().pipe(
-    tap(theme => {
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
+  private isDarkModeSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isDarkMode$: Observable<boolean> = this.isDarkModeSubject.asObservable().pipe(
+    tap((theme: boolean) => {
       const element = document.querySelector('html')!
       theme ? element.classList.add('p-dark') : element.classList.remove('p-dark')
     })
   );
   
-  colorPresetSubject: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(Theme.LARA);
-  colorPreset$: Observable<Theme> = this.colorPresetSubject.asObservable();
-  colorPresets: ITheme[] = [
+  private presetSubject: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(Theme.LARA);
+  preset$: Observable<Theme> = this.presetSubject.asObservable();
+  presets: ITheme[] = [
     { name: 'Aura', preset: Aura, value: Theme.AURA },
     { name: 'Lara', preset: Lara, value: Theme.LARA },
     { name: 'Nora', preset: Nora, value: Theme.NORA }
   ];
   
   constructor() {
-    const savedTheme = this.localStorageService.getItem<boolean>('theme') ?? false;
-    this.themeSubject.next(savedTheme);
-    
+    const savedTheme: boolean = this.localStorageService.getItem<boolean>('theme') ?? false;
+    this.isDarkModeSubject.next(savedTheme);
     const savedPresetLabel: string = localStorage.getItem('colorPresetLabel') ?? 'Aura';
-    const presetObject: Theme = this.colorPresets.find(p => p.name === savedPresetLabel)?.value || Theme.AURA;
-    this.colorPresetSubject.next(presetObject);
+    const presetObject: Theme = this.presets.find(p => p.name === savedPresetLabel)?.value || Theme.AURA;
+    this.presetSubject.next(presetObject);
   }
 
   toggleTheme(theme: boolean): void {
-    this.themeSubject.next(theme);
+    this.isDarkModeSubject.next(theme);
     this.localStorageService.setItem('theme', theme);
   }
   
-  onColorPresetChange(presetValue: Theme): void {
-    const preset: ITheme | undefined = this.colorPresets.find(p => p.value === presetValue);
+  onPresetChange(presetValue: Theme): void {
+    const preset: ITheme | undefined = this.presets.find(p => p.value === presetValue);
     if (preset) {
       this.localStorageService.setItem('colorPresetLabel', preset.name);
-      this.colorPresetSubject.next(preset.value);
+      this.presetSubject.next(preset.value);
       usePreset(preset.preset);
     }
   }
+  
 }

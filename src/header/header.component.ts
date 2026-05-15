@@ -24,7 +24,7 @@ export class HeaderComponent {
   faMoon: IconDefinition = faMoon;
   faSun: IconDefinition = faSun;
   themeService: ThemeService = inject(ThemeService);
-  theme$: Observable<boolean> = this.themeService.theme$;
+  isDarkMode$: Observable<boolean> = this.themeService.isDarkMode$;
   isDateView: boolean = true;
   clicksCount: number = 0;
   currentDateAndTime!: string;
@@ -61,11 +61,11 @@ export class HeaderComponent {
     this.themeService.toggleTheme(theme.checked)
   }
   
-  colorPresets: ITheme[] = this.themeService.colorPresets;
-  colorPreset$: Observable<Theme> = this.themeService.colorPreset$;
+  colorPresets: ITheme[] = this.themeService.presets;
+  colorPreset$: Observable<Theme> = this.themeService.preset$;
   
   onColorPresetChange(event: SelectButtonChangeEvent): void {
-    this.themeService.onColorPresetChange(event.value as Theme);
+    this.themeService.onPresetChange(event.value as Theme);
   }
   
 }
