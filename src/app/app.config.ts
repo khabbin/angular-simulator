@@ -8,7 +8,7 @@ import Lara from '@primeuix/themes/lara';
 import { Theme } from '../enums/Theme';
 import { routes } from './app.routes';
 
-const getTheme = () => {
+const getPreset = () => {
   const savedTheme: string= (localStorage.getItem('colorPresetLabel')) || 'Aura';
   switch(savedTheme) {
     case Theme.NORA:
@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     providePrimeNG({
             theme: {
-                preset: getTheme(),
+                preset: getPreset(),
                 options: {
                   darkModeSelector: '.p-dark'
                 }
