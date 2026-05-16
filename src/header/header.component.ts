@@ -61,10 +61,10 @@ export class HeaderComponent {
     this.themeService.toggleTheme(theme.checked)
   }
   
-  colorPresets: ITheme[] = this.themeService.presets;
-  colorPreset$: Observable<Theme> = this.themeService.preset$;
+  presets: ITheme[] = this.themeService.presets;
+  preset$: Observable<Theme> = this.themeService.preset$;
   
-  onColorPresetChange(event: SelectButtonChangeEvent): void {
+  onPresetChange(event: SelectButtonChangeEvent): void {
     this.themeService.onPresetChange(event.value as Theme);
   }
   

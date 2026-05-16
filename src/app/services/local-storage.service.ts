@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   
   setItem<T>(key: string, value: T): void {
-    const serializedValue = typeof value === 'string' ? value : JSON.stringify(value)
-    localStorage.setItem(key, serializedValue);
+    const stringValue = typeof value === 'string' ? value : JSON.stringify(value)
+    localStorage.setItem(key, stringValue);
   }
   
   getItem<T>(key: string): T | null {

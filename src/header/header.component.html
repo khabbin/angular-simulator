@@ -44,12 +44,12 @@
   <div class="card flex justify-center">
     <p-selectbutton
       id="preset-select-button"
-      [options]="colorPresets"
-      [ngModel]="colorPreset$ | async"
+      [options]="presets"
+      [ngModel]="preset$ | async"
       optionLabel="name"
       optionValue="value"
       aria-labelledby="basic"
-      (onChange)="onColorPresetChange($event)"
+      (onChange)="onPresetChange($event)"
     />
   </div>
 </header>

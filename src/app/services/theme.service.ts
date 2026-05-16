@@ -17,7 +17,7 @@ export class ThemeService {
   private isDarkModeSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   isDarkMode$: Observable<boolean> = this.isDarkModeSubject.asObservable().pipe(
     tap((theme: boolean) => {
-      const element = document.querySelector('html')!
+      const element: HTMLElement = document.querySelector('html')!
       theme ? element.classList.add('p-dark') : element.classList.remove('p-dark')
     })
   );
