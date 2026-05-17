@@ -1,10 +1,7 @@
 :host::ng-deep {
   .rating-label {
     svg {
-      // color: yellow ;
-      
       color: var(--yellow-color);
-
     }
   }
   
@@ -16,7 +13,6 @@
     top: 35%;
       svg {
         color: var(--secondary-color);
-        // color: white ;
         width: 20px !important;
         height: 20px !important;
       }
@@ -169,19 +165,6 @@
                   flex-direction: column;
                   justify-content: center;
                   align-items: center;
-                  
-                  // .select-arrow {
-                  //   position: absolute;
-                  //   right: 16px;
-                  //   top: 35%;
-                  //   transform: translateY(-50%);
-                  //   pointer-events: none;
-                    
-                      // svg {
-                      //   width: 20px !important;
-                      //   height: 20px !important;
-                      // }
-                  // }
                   
                   .input-icon {
                     position: absolute;

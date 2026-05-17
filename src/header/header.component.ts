@@ -58,7 +58,7 @@ export class HeaderComponent {
   }
   
   toggleTheme(theme: ToggleSwitchChangeEvent): void {
-    this.themeService.toggleTheme(theme.checked)
+    this.themeService.toggleTheme(theme.checked);
   }
   
   presets: ITheme[] = this.themeService.presets;

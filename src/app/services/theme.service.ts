@@ -14,7 +14,14 @@ import { Theme } from '../../enums/Theme';
 export class ThemeService {
   
   private localStorageService: LocalStorageService = inject(LocalStorageService);
-  private isDarkModeSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  
+  presets: ITheme[] = [
+    { name: 'Aura', preset: Aura, value: Theme.AURA },
+    { name: 'Lara', preset: Lara, value: Theme.LARA },
+    { name: 'Nora', preset: Nora, value: Theme.NORA }
+  ];
+  
+  private isDarkModeSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.getInitialDarkMode());
   isDarkMode$: Observable<boolean> = this.isDarkModeSubject.asObservable().pipe(
     tap((theme: boolean) => {
       const element: HTMLElement = document.querySelector('html')!
@@ -22,22 +29,9 @@ export class ThemeService {
     })
   );
   
-  private presetSubject: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(Theme.LARA);
+  private presetSubject: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(this.getInitialPreset());
   preset$: Observable<Theme> = this.presetSubject.asObservable();
-  presets: ITheme[] = [
-    { name: 'Aura', preset: Aura, value: Theme.AURA },
-    { name: 'Lara', preset: Lara, value: Theme.LARA },
-    { name: 'Nora', preset: Nora, value: Theme.NORA }
-  ];
   
-  constructor() {
-    const savedTheme: boolean = this.localStorageService.getItem<boolean>('theme') ?? false;
-    this.isDarkModeSubject.next(savedTheme);
-    const savedPresetLabel: string = localStorage.getItem('colorPresetLabel') ?? 'Aura';
-    const presetObject: Theme = this.presets.find(p => p.name === savedPresetLabel)?.value || Theme.AURA;
-    this.presetSubject.next(presetObject);
-  }
-
   toggleTheme(theme: boolean): void {
     this.isDarkModeSubject.next(theme);
     this.localStorageService.setItem('theme', theme);
@@ -50,6 +44,16 @@ export class ThemeService {
       this.presetSubject.next(preset.value);
       usePreset(preset.preset);
     }
+  }
+  
+  private getInitialDarkMode(): boolean {
+    return this.localStorageService.getItem<boolean>('theme') ?? false;
+  }
+  
+  private getInitialPreset(): Theme {
+    const savedLabel = this.localStorageService.getItem<string>('colorPresetLabel');
+    const found = this.presets.find(p => p.name === savedLabel);
+    return found ? found.value : Theme.AURA;
   }
   
 }

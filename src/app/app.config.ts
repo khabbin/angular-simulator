@@ -7,14 +7,17 @@ import Nora from '@primeuix/themes/nora';
 import Lara from '@primeuix/themes/lara';
 import { Theme } from '../enums/Theme';
 import { routes } from './app.routes';
+import { Preset } from '@primeuix/themes/types';
 
-const getPreset = () => {
-  const savedTheme: string= (localStorage.getItem('colorPresetLabel')) || 'Aura';
+const getPreset = (): Preset => {
+  const savedTheme: string = (localStorage.getItem('colorPresetLabel')) || Theme.AURA;
   switch(savedTheme) {
     case Theme.NORA:
       return Nora;
+      
     case Theme.LARA:
       return Lara;
+      
     default:
       return Aura;
   }
@@ -34,4 +37,4 @@ export const appConfig: ApplicationConfig = {
             }
     })
   ]
-};
+}
