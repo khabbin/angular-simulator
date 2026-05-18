@@ -1,4 +1,4 @@
-import { ApplicationConfig, inject, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { providePrimeNG } from 'primeng/config';
@@ -10,7 +10,7 @@ import { routes } from './app.routes';
 import { Preset } from '@primeuix/themes/types';
 
 const getPreset = (): Preset => {
-  const savedTheme: string = (localStorage.getItem('colorPresetLabel')) || Theme.AURA;
+  const savedTheme: string = (localStorage.getItem('presetLabel')) || Theme.AURA;
   switch(savedTheme) {
     case Theme.NORA:
       return Nora;

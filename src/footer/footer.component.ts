@@ -13,8 +13,8 @@ import { faTelegram, faVk, faPinterest, faSkype  } from '@fortawesome/free-brand
 })
 export class FooterComponent {
   
-  faAngledownicon: IconDefinition = faAngleDown;
-  faTelegtam: IconDefinition = faTelegram;
+  faAngledown: IconDefinition = faAngleDown;
+  faTelegram: IconDefinition = faTelegram;
   faVk: IconDefinition = faVk;
   faPinterest: IconDefinition = faPinterest;
   faSkype: IconDefinition = faSkype;

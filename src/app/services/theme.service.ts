@@ -40,7 +40,7 @@ export class ThemeService {
   onPresetChange(presetValue: Theme): void {
     const preset: ITheme | undefined = this.presets.find((p: ITheme) => p.value === presetValue);
     if (preset) {
-      this.localStorageService.setItem('colorPresetLabel', preset.name);
+      this.localStorageService.setItem('presetLabel', preset.name);
       this.presetSubject.next(preset.value);
       usePreset(preset.preset);
     }
@@ -51,7 +51,7 @@ export class ThemeService {
   }
   
   private getInitialPreset(): Theme {
-    const savedLabel = this.localStorageService.getItem<string>('colorPresetLabel');
+    const savedLabel = this.localStorageService.getItem<string>('presetLabel');
     const found = this.presets.find(p => p.name === savedLabel);
     return found ? found.value : Theme.AURA;
   }

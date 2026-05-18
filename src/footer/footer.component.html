@@ -27,7 +27,7 @@
           <a href="tel:+71234567890">+7 (123) 456-78-90</a>
         </div>
         <div class="media">
-          <fa-icon [icon]="faTelegtam" class="media-icon"></fa-icon>
+          <fa-icon [icon]="faTelegram" class="media-icon"></fa-icon>
           <fa-icon [icon]="faVk" class="vk-icon"></fa-icon>
           <fa-icon [icon]="faPinterest" class="media-icon"></fa-icon>
           <fa-icon [icon]="faSkype" class="media-icon"></fa-icon>
@@ -40,7 +40,7 @@
         @for (link of footerServicesLinks; track link.title) {
           <div class="flex">
             <div class="image-box">
-              <fa-icon [icon]="faAngledownicon"></fa-icon>
+              <fa-icon [icon]="faAngledown"></fa-icon>
             </div>
             <a [routerLink]="link.path">
               {{ link.title }}
@@ -55,7 +55,7 @@
         @for (link of footerImportantInfoLinks; track link.title) {
           <div class="flex">
             <div class="image-box">
-               <fa-icon [icon]="faAngledownicon"></fa-icon>
+               <fa-icon [icon]="faAngledown"></fa-icon>
             </div>
             <a [routerLink]="link.path">
               {{ link.title }}
