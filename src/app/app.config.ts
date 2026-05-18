@@ -29,12 +29,12 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection(),
     provideHttpClient(),
     providePrimeNG({
-            theme: {
-                preset: getPreset(),
-                options: {
-                  darkModeSelector: '.p-dark'
-                }
-            }
+      theme: {
+          preset: getPreset(),
+          options: {
+            darkModeSelector: '.p-dark'
+          }
+      }
     })
   ]
 }
