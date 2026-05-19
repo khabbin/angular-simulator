@@ -54,7 +54,7 @@ export class ThemeService {
   
   private getInitialPreset(): Theme {
     const savedLabel = this.localStorageService.getItem<string>('presetLabel');
-    const found = this.presets.find(p => p.name === savedLabel);
+    const found = this.presets.find((p: ITheme) => p.name === savedLabel);
     return found ? found.value : Theme.AURA;
   }
   
