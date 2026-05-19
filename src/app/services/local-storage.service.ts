@@ -6,12 +6,17 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   
   setItem<T>(key: string, value: T): void {
-    localStorage.setItem(key, JSON.stringify(value));
+    const stringValue: string = typeof value === 'string' ? value : JSON.stringify(value);
+    localStorage.setItem(key, stringValue);
   }
   
   getItem<T>(key: string): T | null {
     const item: string | null = localStorage.getItem(key);
-    return item ? JSON.parse(item) : null;
+    try {
+      return item ? JSON.parse(item) : null;
+    } catch (error) {
+      return item as T || null;
+    }
   }
   
   clear(): void {

@@ -1,3 +1,41 @@
+:host::ng-deep {
+  .rating-label {
+    svg {
+      color: var(--yellow-color);
+    }
+  }
+  
+  .form-control {
+    position: absolute !important;
+    right: 16px !important;
+    transform: translateY(-50%);
+    pointer-events: none;
+    top: 35%;
+      svg {
+        color: var(--secondary-color);
+        width: 20px !important;
+        height: 20px !important;
+      }
+  }
+  
+  .live-input-container {
+      svg {
+        color: var(--secondary-color);
+        width: 20px !important;
+        height: 20px !important;
+        position: absolute !important;
+        left: 236px !important;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+  }
+}
+
+* {
+  color: var(--primary-color);
+}
+
 .main-pre-title {
   color: var(--yellow-color) !important;
   line-height: 20px;
@@ -75,8 +113,8 @@
             }
 
             input[type="date"] {
-              width: 254px;
-              height: 50px;
+              width: 272px;
+              height: 52px;
               padding-left: 16px;
             }
 
@@ -86,7 +124,6 @@
                 cursor: pointer;
                 width: 18px;
                 margin-right: 15px;
-                background-image: url("/images/calendar-icon.svg");
                 background-repeat: no-repeat;
             }
 
@@ -94,7 +131,6 @@
                 background: transparent;
                 cursor: pointer;
                 box-sizing: border-box;
-                background-image: url("/images/calendar-icon.svg");
                 padding-left: 16px;
                 background-repeat: no-repeat;
                 background-size: 20px;
@@ -111,8 +147,6 @@
               -moz-appearance: none;
               appearance: none;
               background-color: transparent;
-              background-image: url('/images/expand-arrow-icon.svg');
-              background-repeat: no-repeat;
               background-position: right 16px center;
               padding-right: 40px;
               padding-left: 10px;
@@ -126,10 +160,19 @@
               gap: 21px;
 
                 .form-item-container {
+                  position: relative;
                   display: flex;
                   flex-direction: column;
                   justify-content: center;
                   align-items: center;
+                  
+                  .input-icon {
+                    position: absolute;
+                    right: 16px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    pointer-events: none;
+                  }
 
                   .select-form {
                     display: flex;
@@ -180,6 +223,7 @@
         }
         
         .live-input-container {
+          position: relative;
           margin-top: 15px;
           width: 454px;
           height: 52px;
@@ -188,7 +232,6 @@
               background-repeat: no-repeat;
               background-position: right 15px center;
               background-size: 14px 14px;
-              background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDE1IDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDcuMjUgNCkiIGQ9Ik0xMy41IDAuMTdMNy4yNSA2LjI2TDEuMDEgMC4xN0MwLjkgMC4wNiAwLjc0IDAgMC41OCAwQzAuNDMgMCAwLjI4IDAuMDYgMC4xNyAwLjE3QTAuNTcgMC41NyAwIDAgMCAwLjE3IDAuOThMNi44MiA3LjQ2QzYuOTMgNy41OCA3LjA5IDcuNjQgNy4yNSA3LjY0QzcuNDEgNy42NCA3LjU3IDcuNTggNy42OSA3LjQ2TDE0LjM0IDAuOTlBMC41NyAwLjU3IDAgMCAwIDE0LjM0IDAuMTdDMTQuMjIgMC4wNiAxNC4wNyAwIDEzLjkxIDBDMTMuNzYgMCAxMy42MSAwLjA2IDEzLjUgMC4xN1oiIGZpbGw9IndoaXRlIi8+PC9zdmc+');
               background-color: transparent;
               color: var(--secondary-color);
               height: 52px;
@@ -326,7 +369,7 @@
 }
 
 .offers-section {
-  background-color: var(--bg-color-gray);
+  background-color: var(--bg-second-color);
   display: flex;
   justify-content: center;
   
@@ -441,6 +484,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: var(--bg-second-color);
     
     .tour-cards-container {
       margin: 50px 0px;

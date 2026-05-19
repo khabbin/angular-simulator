@@ -1,6 +1,8 @@
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+
 export interface IService {
   id: number;
-  icon: string;
+  icon: IconDefinition;
   bgColor: string;
   name: string;
   description: string;

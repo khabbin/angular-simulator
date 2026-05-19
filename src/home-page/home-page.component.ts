@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Collection } from '../app/collection';
 import { IService } from '../interfaces/IService';
@@ -7,15 +7,22 @@ import { ITourDirection } from '../interfaces/ITourDirection';
 import { IBlogPost } from '../interfaces/IBlogPost';
 import { MessageService } from '../app/services/message.service';
 import { LoaderService } from '../app/services/loader.service';
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+import { faStar, faCalendar, faAngleDown, faAngleRight, faTag, faPlay, faBookOpen, faShieldHalved, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule],
+  imports: [FormsModule, FaIconComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent {
   
+  calendarIcon: IconDefinition = faCalendar;
+  starIcon: IconDefinition = faStar;
+  angleDownIcon: IconDefinition = faAngleDown;
+  angleRightIcon: IconDefinition = faAngleRight;
+  tagIcon: IconDefinition = faTag;
   loaderService: LoaderService = inject(LoaderService);
   messageService: MessageService = inject(MessageService);
   selectedPerson!: string;
@@ -24,10 +31,10 @@ export class HomePageComponent {
   selectedServiceId!: number;
   liveInputValue!: string;
 
-  readonly shieldIcon: string = 'images/shield-icon.svg';
-  readonly guideIcon: string = 'images/guide-icon.svg';
-  readonly priceTagIcon: string = 'images/price-tag-icon.svg';
-  
+  readonly shieldIcon: IconDefinition = faShieldHalved;
+  readonly guideIcon: IconDefinition = faBookOpen;
+  readonly priceTagIcon: IconDefinition = faTag;
+  readonly playIcon: IconDefinition = faPlay;
   productCollection: Collection<string> = new Collection<string>(['banana', 'bread', 'milk']);
   numbersCollection: Collection<number> = new Collection<number>([1, 2, 3, 4, 5]);
   
@@ -65,7 +72,7 @@ export class HomePageComponent {
     },
     {
       id: 3,
-      icon: this.priceTagIcon,
+      icon: this.tagIcon,
       bgColor: '#F3F1E1',
       name: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'

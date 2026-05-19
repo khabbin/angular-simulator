@@ -7,7 +7,6 @@
   font-family: 'Nunito Sans';
   margin: 0px;
   padding: 0px;
-  color: var(--primary-color);
   box-sizing: border-box;
 }
 
@@ -43,14 +42,6 @@ input:focus {
   width: 1180px;
 }
 
-.white-bg {
-  background-color: rgba(255, 255, 255, 1);
-}
-
-.gray-bg {
-  background-color: rgba(243, 245, 244, 1);
-}
-
 .super-container {
   display: block;
   width: 1920px;
@@ -62,9 +53,15 @@ input:focus {
   --secondary-color: #FDFDFD;
   --yellow-color: #F2BE22;
   --green-color: #1A3E3E;
-  --bg-color-gray: #F3F5F4;
+  --bg-second-color: #F3F5F4;
   --beige-color: #D4A373;
   --gray-color: #667C7C;
+}
+
+.p-dark {
+  --primary-color: #F5F5F5;
+  --bg-second-color: #222222;
+  --secondary-color: #FDFDFD;
 }
 
 .fs-14 {
