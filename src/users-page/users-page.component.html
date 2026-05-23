@@ -1,6 +1,7 @@
 
 <app-users-filter (changeFilter)="onSearch($event)"></app-users-filter>
 <app-create-user (createUser)="onAddUser($event)"></app-create-user>
+<h2>{{ (filteredUsers$ | async)?.length || 0 | declension:'пользователь':'пользователя':'пользователей' }}</h2>
 <div class="users-container">
   @for (user of filteredUsers$ | async; track user.id) {
     <app-user-card [user]="user" (deleteUser)="onDeleteUser($event)"></app-user-card>

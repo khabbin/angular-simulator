@@ -6,10 +6,11 @@ import { BehaviorSubject, combineLatest, map, Observable, tap } from 'rxjs';
 import { UserCardComponent } from "../user-card/user-card.component";
 import { CreateUserComponent } from "../create-user/create-user.component";
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
+import { DeclensionPipe } from '../app/pipes/declension.pipe';
 
 @Component({
   selector: 'app-users-page',
-  imports: [AsyncPipe, UserCardComponent, CreateUserComponent, UsersFilterComponent],
+  imports: [AsyncPipe, UserCardComponent, CreateUserComponent, UsersFilterComponent, DeclensionPipe],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
