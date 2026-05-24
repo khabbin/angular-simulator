@@ -9,9 +9,7 @@ export class GradientBorderDirective {
   @Input('appGradientBorder') config: IGradientBorder = {};
   
   private timeoutId!: number;
-  
-  constructor() {};
-  
+    
   @HostBinding('class.gradient-border-active') isActive: boolean = false;
   
   @HostBinding('style.--gradient-colors')
