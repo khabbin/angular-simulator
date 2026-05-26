@@ -11,14 +11,13 @@ export class DeclensionPipe implements PipeTransform {
     
     if (mod100 >= 11 && mod100 <= 14) {
       return `${value} ${many}`;
-    }
-    if (mod10 === 1) {
+    } else if (mod10 === 1) {
       return `${value} ${one}`;
-    }
-    if (mod10 >= 2 && mod10 <= 4) {
+    } else if (mod10 >= 2 && mod10 <= 4) {
       return `${value} ${few}`;
+    } else {
+      return `${value} ${many}`;
     }
-    return `${value} ${many}`;
   }
   
 }

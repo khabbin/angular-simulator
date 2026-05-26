@@ -6,7 +6,11 @@ import { IGradientBorder } from '../../interfaces/IGradientBorder';
 })
 export class GradientBorderDirective {
   
-  @Input('appGradientBorder') config: IGradientBorder = {};
+  @Input('appGradientBorder') config: IGradientBorder = {
+    colors: ['red', 'black'],
+    thickness: '2px',
+    delay: 1000
+  };
   
   private timeoutId!: number;
     
@@ -14,19 +18,19 @@ export class GradientBorderDirective {
   
   @HostBinding('style.--gradient-colors')
     get colors(): string {
-      return this.config.colors?.join(', ') || 'red, black';
+      return this.config.colors!.join(', ');
     }
   
   @HostBinding('style.--border-thickness')
     get thickness(): string {
-      return this.config.thickness || '2px';
+      return this.config.thickness!;
     }
   
   @HostListener('mouseenter')
     onMouseEnter(): void {
       this.timeoutId = setTimeout(() => {
         this.isActive = true;
-      }, this.config.delay || 1000);
+      }, this.config.delay!);
     }
   
   @HostListener('mouseleave')
