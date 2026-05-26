@@ -21,16 +21,16 @@ export class PhoneFormatPipe implements PipeTransform {
     
     switch (format) {
       case PhoneFormat.COMPACT:
-        return `+${raw}`;
+        return `+${ raw }`;
         
       case PhoneFormat.INTERNATIONAL:
-        return `+${countryCode} ${p1} ${p2} ${p3} ${p4}`;
+        return `+${ countryCode } ${ p1 } ${ p2 } ${ p3 } ${ p4 }`;
         
       case PhoneFormat.NATIONAL:
-        return `${p1} ${p2} ${p3} ${p4}`;
+        return `${ p1 } ${ p2 } ${ p3 } ${ p4 }`;
         
       case PhoneFormat.MASKED:
-        return `+${countryCode} ${p1} *** ** ${p4}`;
+        return `+${ countryCode } ${ p1 } *** ** ${ p4 }`;
         
       default:
         return raw;
