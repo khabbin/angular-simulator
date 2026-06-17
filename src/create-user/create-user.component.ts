@@ -1,10 +1,11 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { IUser } from '../interfaces/IUser';
+import { BoldOnHoverDirective } from '../app/directives/bold-on-hover.directive';
 
 @Component({
   selector: 'app-create-user',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BoldOnHoverDirective],
   templateUrl: './create-user.component.html',
   styleUrl: './create-user.component.scss',
 })

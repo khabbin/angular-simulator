@@ -1,9 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IUser } from '../interfaces/IUser';
+import { PhoneFormatPipe } from '../app/pipes/phone-format.pipe';
+import { BoldOnHoverDirective } from '../app/directives/bold-on-hover.directive';
+import { GradientBorderDirective } from '../app/directives/gradient-border.directive';
 
 @Component({
   selector: 'app-user-card',
-  imports: [],
+  imports: [PhoneFormatPipe, BoldOnHoverDirective, GradientBorderDirective],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
 })

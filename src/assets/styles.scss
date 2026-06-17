@@ -103,3 +103,24 @@ input:focus {
 .light {
   font-weight: 300;
 }
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.gradient-border-active {
+  border: var(--border-thickness, 4px) solid transparent !important;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(
+      var(--angle),
+      var(--gradient-colors)
+    ) border-box !important;
+  animation: rotate-gradient 3s linear infinite;
+}
+
+@keyframes rotate-gradient {
+  to { --angle: 360deg; }
+}
