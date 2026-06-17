@@ -1,6 +1,6 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import Nora from '@primeuix/themes/nora';
@@ -8,6 +8,8 @@ import Lara from '@primeuix/themes/lara';
 import { Theme } from '../enums/Theme';
 import { routes } from './app.routes';
 import { Preset } from '@primeuix/themes/types';
+import { loggingInterceptor } from './interceptors/http-logging.interceptor';
+import { errorInterceptor } from './interceptors/http-error.interceptor';
 
 const getPreset = (): Preset => {
   const savedTheme: string = (localStorage.getItem('presetLabel')) || Theme.AURA;
@@ -27,7 +29,9 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([loggingInterceptor, errorInterceptor])
+    ),
     providePrimeNG({
       theme: {
           preset: getPreset(),

@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../app/services/user.service';
 import { AsyncPipe } from '@angular/common';
 import { IUser } from '../interfaces/IUser';
-import { BehaviorSubject, combineLatest, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, combineLatest, map, Observable, of, tap } from 'rxjs';
 import { UserCardComponent } from "../user-card/user-card.component";
 import { CreateUserComponent } from "../create-user/create-user.component";
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
@@ -31,7 +31,8 @@ export class UsersPageComponent implements OnInit {
   ngOnInit(): void {
     this.userService.loadUsers()
       .pipe(
-        tap((users: IUser[]) => this.userService.setUsers(users))
+        tap((users: IUser[]) => this.userService.setUsers(users)),
+        catchError(() => of([]))
       ).subscribe();
   }
   
