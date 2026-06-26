@@ -1,23 +1,23 @@
-import { HttpInterceptorFn, HttpEventType } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { HttpInterceptorFn, HttpEventType, HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
-export const loggingInterceptor: HttpInterceptorFn = (req, next) => {
+export const loggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {
 
-  const startTime = performance.now();
-  const { method, urlWithParams } = req;
+  const startTime: number = performance.now();
+  const { method, urlWithParams }: { method: string; urlWithParams: string } = req;
 
   return next(req).pipe(
-    tap({
-      next: (event) => {
-        if (event.type === HttpEventType.Response) {
-          const duration = (performance.now() - startTime).toFixed(2);
-          console.log(`[HTTP SUCCESS] ${ method } ${ urlWithParams } | Статус: ${ event.status } | Время: ${ duration }ms`);
-        }
-      },
-      error: (error) => {
-        const duration = (performance.now() - startTime).toFixed(2);
-        console.error(`[HTTP ERROR] ${ method } ${ urlWithParams } | Статус: ${ error.status } (${ error.statusText }) | Время: ${ duration }ms`);
+    tap((event: HttpEvent<unknown>) => {
+      if (event.type === HttpEventType.Response) {
+        const duration: string = (performance.now() - startTime).toFixed(2);
+        console.log(`[HTTP SUCCESS] ${ method } ${ urlWithParams } | Статус: ${ event.status } | Время: ${ duration }ms`);
       }
+    }),
+    catchError((error: HttpErrorResponse)=> {
+      const duration: string = (performance.now() - startTime).toFixed(2);
+      console.error(`[HTTP ERROR] ${ method } ${ urlWithParams } | Статус: ${ error.status } | Время: ${ duration }ms`);
+      return throwError(() => error);
     })
   );
 };
