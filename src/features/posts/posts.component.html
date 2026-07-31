@@ -1,0 +1,46 @@
+<button class="create-post-btn" routerLink="/posts/create">Create post</button>
+<div class="table-box">
+    <p-contextmenu #cm [model]="menuItems" (onHide)="postService.selectedPost = null" />
+    <p-table
+        [value]="(posts$ | async) || []"
+        showGridlines
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [contextMenu]="cm"
+        [(contextMenuSelection)]="postService.selectedPost"
+        [paginator]="true"
+        [lazy]="true"
+        [lazyLoadOnInit]="true"
+        [first]="skip"
+        [rows]="rows"
+        [rowsPerPageOptions]="[10, 20, 50]"
+        [totalRecords]="(totalRecords$ | async)!"
+        (onLazyLoad)="loadPosts($event)"
+    >
+        <ng-template #header>
+            <tr>
+                <th>title</th>
+                <th>tags</th>
+                <th>views</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-post>
+            <tr (dblclick)="redirectToDetailPage(post)" [pContextMenuRow]="post">
+                @if (isLoading$ | async) {
+                    <td>
+                        <p-skeleton width="25%" height="1.2rem" />
+                    </td>
+                    <td>
+                        <p-skeleton width="25%" height="1.2rem" />
+                    </td>
+                    <td>
+                        <p-skeleton width="25%" height="1.2rem" />
+                    </td>
+                } @else {
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.tags }}</td>
+                    <td>{{ post.views }}</td>
+                }
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

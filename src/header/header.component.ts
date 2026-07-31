@@ -38,6 +38,10 @@ export class HeaderComponent {
     {
       title: 'Пользователи',
       path: '/users'
+    },
+    {
+      title: 'Посты',
+      path: '/posts'
     }
   ];
 
