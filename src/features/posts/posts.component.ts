@@ -31,6 +31,7 @@ import { LoaderService } from '../../app/services/loader.service';
   styleUrl: './posts.component.scss',
 })
 export class PostsComponent implements OnInit {
+  
   dialogService: DialogService = inject(DialogService);
   menuItems!: MenuItem[];
   postService: PostService = inject(PostService);
@@ -42,14 +43,16 @@ export class PostsComponent implements OnInit {
   loaderService: LoaderService = inject(LoaderService);
   totalRecords$: Observable<number> = this.postService.totalRecords$;
   
+  selectedPost: IPost | null = null;
+  
   rows: number = 10;
   skip: number = 0;
   
   ngOnInit(): void {
     this.menuItems = [
-      { label: 'View', command: (): void => this.redirectToDetailPage(this.postService.selectedPost!) },
+      { label: 'View', command: (): void => this.redirectToDetailPage(this.selectedPost!) },
       { label: 'Edit', command: (): void => this.showModal() },
-      { label: 'Delete', command: (): void => this.onDelete(this.postService.selectedPost!) }
+      { label: 'Delete', command: (): void => this.onDelete(this.selectedPost!) }
     ];
   }
   
@@ -97,7 +100,8 @@ export class PostsComponent implements OnInit {
           '960px': '75vw',
           '640px': '90vw'
       },
-      data: this.postService.selectedPost
+      data: this.selectedPost
     });
   }
+  
 }

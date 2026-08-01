@@ -1,12 +1,12 @@
 <button class="create-post-btn" routerLink="/posts/create">Create post</button>
 <div class="table-box">
-    <p-contextmenu #cm [model]="menuItems" (onHide)="postService.selectedPost = null" />
+    <p-contextmenu #cm [model]="menuItems" (onHide)="selectedPost = null"/>
     <p-table
         [value]="(posts$ | async) || []"
         showGridlines
         [tableStyle]="{ 'min-width': '50rem' }"
         [contextMenu]="cm"
-        [(contextMenuSelection)]="postService.selectedPost"
+        [(contextMenuSelection)]="selectedPost"
         [paginator]="true"
         [lazy]="true"
         [lazyLoadOnInit]="true"

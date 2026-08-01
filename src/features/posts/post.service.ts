@@ -18,8 +18,6 @@ export class PostService {
   private totalRecordsSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   totalRecords$: Observable<number> = this.totalRecordsSubject.asObservable();
   
-  selectedPost: IPost | null = null;
-  
   getPosts(limit?: number, skip?: number): Observable<IPostResponse> {
     return this.postApiService.getPosts(limit, skip).pipe(
       tap((postResponse: IPostResponse) => {
@@ -49,9 +47,8 @@ export class PostService {
       }),
       tap((filteredPosts: IPost[]) => {
         this.postsSubject.next(filteredPosts);
-        const currentTotal = this.totalRecordsSubject.value;
+        const currentTotal: number = this.totalRecordsSubject.value;
         this.totalRecordsSubject.next(currentTotal - 1);
-        this.selectedPost = null;
       })
     );
   }
@@ -61,7 +58,7 @@ export class PostService {
       tap((serverPost: IPost) => {
         const currentPosts: IPost[] = this.postsSubject.value;
         this.postsSubject.next([serverPost, ...currentPosts]);
-        const currentTotal = this.totalRecordsSubject.value;
+        const currentTotal: number = this.totalRecordsSubject.value;
         this.totalRecordsSubject.next(currentTotal + 1);
       })
     )
@@ -70,4 +67,5 @@ export class PostService {
   goToDetail(post: IPost): void {
     this.router.navigate(['posts', post.id]);
   }
+  
 }

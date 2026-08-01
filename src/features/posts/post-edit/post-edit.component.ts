@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './post-edit.component.scss',
 })
 export class PostEditComponent implements OnDestroy {
+  
   dialogService: DialogService = inject(DialogService);
   messageService: MessageService = inject(MessageService);
   loaderService: LoaderService = inject(LoaderService);
@@ -67,4 +68,5 @@ export class PostEditComponent implements OnDestroy {
   closeModal(): void {
     this.ref?.close();
   }
+  
 }

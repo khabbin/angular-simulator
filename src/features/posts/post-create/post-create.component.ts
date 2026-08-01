@@ -15,6 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrl: './post-create.component.scss',
 })
 export class PostCreateComponent {
+  
   private fb: FormBuilder = inject(FormBuilder);
   private postService: PostService = inject(PostService);
   private router: Router = inject(Router);
@@ -38,7 +39,6 @@ export class PostCreateComponent {
       const post: IPost = {
         ...this.postForm.getRawValue() as IPost,
         tags: tagsArray,
-        id: Date.now(),
         reactions: {
           likes: 0,
           dislikes: 0
@@ -59,4 +59,5 @@ export class PostCreateComponent {
       this.messageService.showError(`форма не валидна`)
     }
   }
+  
 }

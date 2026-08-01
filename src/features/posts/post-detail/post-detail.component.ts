@@ -11,9 +11,11 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './post-detail.component.scss',
 })
 export class PostDetailComponent {
+  
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
   
   post$: Observable<IPost> = this.activatedRoute.data.pipe(
     map((data: Data) => data['post'] as IPost),
   )
+  
 }
