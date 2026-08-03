@@ -1,0 +1,18 @@
+<form [formGroup]="postEditForm">
+  <div>
+    <label for="title">Title</label>
+    <input formControlName="title" pInputText id="title" autocomplete="off"/>
+  </div>
+  <div>
+    <label for="tags">Tags</label>
+    <input formControlName="tags" pInputText id="tags" autocomplete="off"/>
+  </div>
+  <div>
+    <label for="views">Views</label>
+    <input formControlName="views" pInputText id="views" autocomplete="off"/>
+  </div>
+  <div>
+    <p-button label="Cancel" severity="secondary" (click)="closeModal()"/>
+    <p-button label="Save" (click)="onPostEdit()"/>
+  </div>
+</form>
