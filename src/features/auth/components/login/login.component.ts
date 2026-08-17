@@ -27,7 +27,8 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
       return;
     }
-    const { username, password } = this.loginForm.getRawValue() as { username: string; password: string };
+    
+    const { username, password } = this.loginForm.getRawValue();
     
     this.authService.login(username, password).pipe(
       tap(() => {
@@ -35,7 +36,7 @@ export class LoginComponent {
         this.router.navigate(['/']);
       }),
       catchError(() => {
-        this.messageService.showError('Ошибка входа');
+        this.messageService.showError('Произошла ошибка');
         return EMPTY;
       })
     ).subscribe();

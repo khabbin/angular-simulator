@@ -6,31 +6,25 @@ import { IToken } from '../interfaces/IToken';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   
-  const authService: AuthorizationService = inject(AuthorizationService);
-  let clonedReq: HttpRequest<unknown> = req;
-  
+  const authService: AuthorizationService = inject(AuthorizationService); 
   const accessToken: string | null = authService.getAccessToken();
   
-  if (accessToken) {
-    clonedReq = req.clone({
+  const setHeader = (request: HttpRequest<unknown>, token: string): HttpRequest<unknown> =>
+    request.clone({
       setHeaders: {
-        Authorization: `Bearer ${ accessToken }`
+        Authorization: `Bearer ${ token }`
       }
     });
-  }
+    
+  const clonedReq = accessToken ? setHeader(req, accessToken) : req;
   
   return next(clonedReq).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401) {
         return authService.refreshSession().pipe(
-          switchMap((newTokens: IToken) => {
-            const retryReq = req.clone({
-              setHeaders: {
-                Authorization: `Bearer ${ newTokens.accessToken }`
-              }
-            });
-            return next(retryReq);
-          }),
+          switchMap((newTokens: IToken) =>
+            next(setHeader(req, newTokens.accessToken))
+          ),
           catchError((refreshError: HttpErrorResponse) => {
             authService.logout();
             return throwError(() => refreshError);
