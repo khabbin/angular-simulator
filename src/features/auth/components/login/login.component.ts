@@ -4,6 +4,7 @@ import { AuthorizationService } from '../../services/authorization.service';
 import { catchError, EMPTY, tap } from 'rxjs';
 import { MessageService } from '../../../../app/services/message.service';
 import { Router } from '@angular/router';
+import { ILogin } from '../../interfaces/ILogin';
 
 @Component({
   selector: 'app-login',
@@ -28,9 +29,9 @@ export class LoginComponent {
       return;
     }
     
-    const { username, password } = this.loginForm.getRawValue();
+    const loginData: ILogin = this.loginForm.getRawValue();
     
-    this.authService.login(username, password).pipe(
+    this.authService.login(loginData).pipe(
       tap(() => {
         this.messageService.showSuccess('Успешно');
         this.router.navigate(['/']);

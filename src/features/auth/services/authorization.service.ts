@@ -7,6 +7,7 @@ import { IAuthUser } from '../interfaces/IAuthUser';
 import { MessageService } from '../../../app/services/message.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ILogin } from '../interfaces/ILogin';
 
 @Service()
 export class AuthorizationService {
@@ -27,18 +28,16 @@ export class AuthorizationService {
     );
   }
   
-  login(username: string, password: string): Observable<IAuthUser> {
-    return this.authApiService.getToken(username, password).pipe(
+  login(credentials: ILogin): Observable<IAuthUser> {
+    return this.authApiService.getToken(credentials.username, credentials.password).pipe(
       tap((tokens: IToken) => {
         this.saveTokens(tokens)
       }),
       switchMap(() => this.getCurrentUser()),
       tap(() => {
-        this.messageService.showInfo('Успешно')
         this.router.navigate(['/']);
       }),
       catchError((error: HttpErrorResponse) => {
-        this.messageService.showError('Ошибка входа');
         return throwError(() => error);
       })
     )
