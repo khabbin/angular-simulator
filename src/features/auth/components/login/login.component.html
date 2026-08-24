@@ -1,0 +1,39 @@
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+  <div class="form-group">
+    <label for="username">Имя пользователя</label>
+    <input
+      id="username"
+      type="text"
+      formControlName="username"
+      placeholder="Введите username"
+    />
+    
+    @if (loginForm.get('username')?.touched && loginForm.get('username')?.invalid) {
+      <div class="error-block">
+        @if (loginForm.get('username')?.hasError('required')) { <small>Поле обязательно для заполнения.</small> }
+        @if (loginForm.get('username')?.hasError('minlength')) { <small>Минимум 5 символов.</small> }
+        @if (loginForm.get('username')?.hasError('maxlength')) { <small>Максимум 200 символов.</small> }
+      </div>
+    }
+  </div>
+  
+  <div class="form-group">
+    <label for="password">Пароль</label>
+    <input 
+      id="password" 
+      type="password" 
+      formControlName="password"
+      placeholder="Введите пароль"
+    />
+  
+    @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {
+      <div class="error-block">
+        @if (loginForm.get('password')?.hasError('required')) { <small>Поле обязательно для заполнения.</small> }
+        @if (loginForm.get('password')?.hasError('minlength')) { <small>Минимум 5 символов.</small> }
+        @if (loginForm.get('password')?.hasError('maxlength')) { <small>Максимум 12 символов.</small> }
+      </div>
+    }
+  </div>
+  
+  <button type="submit" class="submit-btn" [disabled]="loginForm.invalid" id="login-form-submit-btn">Войти</button>
+</form>

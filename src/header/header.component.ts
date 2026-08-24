@@ -42,6 +42,10 @@ export class HeaderComponent {
     {
       title: 'Посты',
       path: '/posts'
+    },
+    {
+      title: 'Login',
+      path: '/login'
     }
   ];
 

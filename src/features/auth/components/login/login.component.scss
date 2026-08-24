@@ -1,0 +1,78 @@
+.login-form {
+  max-width: 400px;
+  margin: 19rem;
+  margin-inline: auto;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: block;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+
+    label {
+      margin-bottom: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input {
+      padding: 10px 12px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      transition: all 0.2s ease;
+
+      &:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+      }
+
+      &.ng-touched.ng-invalid {
+        border-color: #dc3545;
+        
+        &:focus {
+          box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+        }
+      }
+    }
+  }
+
+  .error-block {
+    margin-top: 4px;
+
+    small {
+      display: block;
+      color: #dc3545;
+      font-size: 12px;
+    }
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background-color: #0056b3;
+    }
+
+    &:disabled {
+      background-color: #e0e0e0;
+      color: #a11;
+      cursor: not-allowed;
+    }
+  }
+}
