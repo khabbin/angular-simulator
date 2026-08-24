@@ -3,6 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { AuthorizationService } from '../services/authorization.service';
 import { map, take } from 'rxjs';
 import { Role } from '../../../enums/Role';
+import { IAuthUser } from '../interfaces/IAuthUser';
 
 export const adminGuard: CanActivateFn = (route, state) => {
   
@@ -11,7 +12,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
   
   return authService.currentUser$.pipe(
     take(1),
-    map(user => {
+    map((user: IAuthUser | null) => {
       if (user && user.role === Role.ADMIN) {
         return true;
       }
