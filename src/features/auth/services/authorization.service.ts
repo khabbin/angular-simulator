@@ -1,4 +1,4 @@
-import { inject, Service } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { AuthorizationApiService } from './authorization-api.service';
 import { LocalStorageService } from '../../../app/services/local-storage.service';
 import { BehaviorSubject, catchError, Observable, of, switchMap, tap, throwError } from 'rxjs';
@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ILogin } from '../interfaces/ILogin';
 
-@Service()
+@Injectable({
+  providedIn: 'root',
+})
+
 export class AuthorizationService {
   
   private authApiService: AuthorizationApiService = inject(AuthorizationApiService);
@@ -29,7 +32,7 @@ export class AuthorizationService {
   }
   
   login(credentials: ILogin): Observable<IAuthUser> {
-    return this.authApiService.getToken(credentials.username, credentials.password).pipe(
+    return this.authApiService.login(credentials).pipe(
       tap((tokens: IToken) => {
         this.saveTokens(tokens)
       }),

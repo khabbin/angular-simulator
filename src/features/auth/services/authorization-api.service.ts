@@ -1,17 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Service } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IToken } from '../interfaces/IToken';
 import { IAuthUser } from '../interfaces/IAuthUser';
+import { ILogin } from '../interfaces/ILogin';
 
-@Service()
+@Injectable({
+  providedIn: 'root',
+})
+
 export class AuthorizationApiService {
   
   private readonly api: string = 'https://dummyjson.com/auth';
   http: HttpClient = inject(HttpClient);
   
-  getToken(username: string, password: string): Observable<IToken> {
-    return this.http.post<IToken>(`${ this.api }/login`, { username, password });
+  login(formValue: ILogin): Observable<IToken> {
+    return this.http.post<IToken>(`${ this.api }/login`, { formValue });
   }
   
   getAuthUser(): Observable<IAuthUser> {
