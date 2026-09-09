@@ -6,14 +6,13 @@ import { IUser } from '../../interfaces/IUser';
 @Injectable({
   providedIn: 'root',
 })
-
 export class UserApiService {
-  
+
   private http: HttpClient = inject(HttpClient);
-  private usersApiUrl: string = 'https://jsonplaceholder.typicode.com/users';
+  private usersApiUrl = 'https://jsonplaceholder.typicode.com/users';
 
   getUsers(): Observable<IUser[]> {
     return this.http.get<IUser[]>(this.usersApiUrl);
   }
-  
+
 }

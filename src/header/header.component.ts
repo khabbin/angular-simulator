@@ -5,17 +5,31 @@ import { ThemeService } from '../app/services/theme.service';
 import { ToggleSwitchChangeEvent } from 'primeng/types/toggleswitch';
 import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { FormsModule } from '@angular/forms';
-import { FaIconComponent, IconDefinition } from "@fortawesome/angular-fontawesome";
+import {
+  FaIconComponent,
+  IconDefinition,
+} from '@fortawesome/angular-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { AsyncPipe } from '@angular/common';
-import { SelectButtonChangeEvent, SelectButtonModule } from 'primeng/selectbutton';
+import {
+  SelectButtonChangeEvent,
+  SelectButtonModule,
+} from 'primeng/selectbutton';
 import { ITheme } from '../interfaces/ITheme';
 import { Observable } from 'rxjs';
 import { Theme } from '../enums/Theme';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive, FormsModule, FaIconComponent, ToggleSwitchModule, AsyncPipe, SelectButtonModule],
+  imports: [
+    RouterLink,
+    RouterLinkActive,
+    FormsModule,
+    FaIconComponent,
+    ToggleSwitchModule,
+    AsyncPipe,
+    SelectButtonModule,
+  ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
@@ -25,53 +39,56 @@ export class HeaderComponent {
   faSun: IconDefinition = faSun;
   themeService: ThemeService = inject(ThemeService);
   isDarkMode$: Observable<boolean> = this.themeService.isDarkMode$;
-  isDateView: boolean = true;
-  clicksCount: number = 0;
+  isDateView = true;
+  clicksCount = 0;
   currentDateAndTime!: string;
-  companyName: string = 'румтибет';
-  
+  companyName = 'румтибет';
+
   links: ILink[] = [
     {
       title: 'Главная',
-      path: '/'
+      path: '/',
     },
     {
       title: 'Пользователи',
-      path: '/users'
+      path: '/users',
     },
     {
       title: 'Посты',
-      path: '/posts'
+      path: '/posts',
     },
     {
       title: 'Login',
-      path: '/login'
-    }
+      path: '/login',
+    },
   ];
 
   constructor() {
-    setInterval(() => this.currentDateAndTime = new Date().toLocaleString(), 1000);
+    setInterval(
+      () => (this.currentDateAndTime = new Date().toLocaleString()),
+      1000
+    );
   }
-  
+
   reduceCounter(): void {
     this.clicksCount--;
   }
-  
+
   increaseCounter(): void {
     this.clicksCount++;
   }
-  
+
   toggleBlock(): void {
     this.isDateView = !this.isDateView;
   }
-  
+
   toggleTheme(theme: ToggleSwitchChangeEvent): void {
     this.themeService.toggleTheme(theme.checked);
   }
-  
+
   presets: ITheme[] = this.themeService.presets;
   preset$: Observable<Theme> = this.themeService.preset$;
-  
+
   onPresetChange(event: SelectButtonChangeEvent): void {
     this.themeService.onPresetChange(event.value as Theme);
   }

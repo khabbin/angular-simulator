@@ -1,7 +1,7 @@
 <div class="messages-box">
   @for (message of messageService.messages$ | async; track $index) {
-    <ng-container 
-      [ngTemplateOutlet]="systemMessage" 
+    <ng-container
+      [ngTemplateOutlet]="systemMessage"
       [ngTemplateOutletContext]="{ $implicit: message }">
     </ng-container>
   }
@@ -9,11 +9,13 @@
 
 <ng-template #systemMessage let-message>
   <div class="system-message">
-    <img src="/images/message-icon.svg" alt="message-icon">
+    <img src="/images/message-icon.svg" alt="message-icon" />
     <div class="text-content">
       <span>{{ message.type }}</span>
       <span>{{ message.text }}</span>
     </div>
-    <div class="message-close-button" (click)="messageService.closeMessage(message)"></div>
+    <div
+      class="message-close-button"
+      (click)="messageService.closeMessage(message)"></div>
   </div>
 </ng-template>
