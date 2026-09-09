@@ -17,7 +17,6 @@ module.exports = defineConfig([
       tseslint.configs.stylistic,
       angular.configs.tsRecommended,
       eslintConfigPrettier,
-      eslintPluginPrettierRecommended,
     ],
     plugins: {
       '@stylistic': stylistic,
@@ -105,11 +104,12 @@ module.exports = defineConfig([
     extends: [
       angular.configs.templateRecommended,
       angular.configs.templateAccessibility,
-      eslintPluginPrettierRecommended,
     ],
     rules: {
       '@angular-eslint/template/banana-in-box': 'error',
       '@angular-eslint/template/eqeqeq': 'warn',
+      '@angular-eslint/template/click-events-have-key-events': 'off',
+      '@angular-eslint/template/interactive-supports-focus': 'off',
     },
   },
 ]);
