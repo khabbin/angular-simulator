@@ -25,83 +25,97 @@ import { LoaderService } from '../../app/services/loader.service';
     AsyncPipe,
     ContextMenuModule,
     RouterLink,
-    DynamicDialogModule
+    DynamicDialogModule,
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
 })
 export class PostsComponent implements OnInit {
-  
+
   dialogService: DialogService = inject(DialogService);
   menuItems!: MenuItem[];
   postService: PostService = inject(PostService);
   messageService: MessageService = inject(MessageService);
   private ref: DynamicDialogRef | null = null;
-  private isLoadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  private isLoadingSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(true);
+
   isLoading$: Observable<boolean> = this.isLoadingSubject.asObservable();
   posts$: Observable<IPost[]> = this.postService.posts$;
   loaderService: LoaderService = inject(LoaderService);
   totalRecords$: Observable<number> = this.postService.totalRecords$;
-  
+
   selectedPost: IPost | null = null;
-  
-  rows: number = 10;
-  skip: number = 0;
-  
+
+  rows = 10;
+  skip = 0;
+
   ngOnInit(): void {
     this.menuItems = [
-      { label: 'View', command: (): void => this.redirectToDetailPage(this.selectedPost!) },
+      {
+        label: 'View',
+        command: (): void => this.redirectToDetailPage(this.selectedPost!),
+      },
       { label: 'Edit', command: (): void => this.showModal() },
-      { label: 'Delete', command: (): void => this.onDelete(this.selectedPost!) }
+      {
+        label: 'Delete',
+        command: (): void => this.onDelete(this.selectedPost!),
+      },
     ];
   }
-  
+
   redirectToDetailPage(post: IPost): void {
     this.messageService.showInfo('Переход к посту');
     this.postService.goToDetail(post);
   }
-  
+
   loadPosts(event: TableLazyLoadEvent): void {
     this.skip = event.first ?? 0;
     this.rows = event.rows ?? 10;
     this.isLoadingSubject.next(true);
-    this.postService.getPosts(this.rows, this.skip).pipe(
-      tap(() => {
+    this.postService
+      .getPosts(this.rows, this.skip)
+      .pipe(
+        tap(() => {
           this.isLoadingSubject.next(false);
         }),
-      catchError((error: HttpErrorResponse) => {
-        this.isLoadingSubject.next(false);
-        this.messageService.showError(`Ошибка сети: ${ error }`);
-        return throwError(() => error);
-      })
-    ).subscribe();
+        catchError((error: HttpErrorResponse) => {
+          this.isLoadingSubject.next(false);
+          this.messageService.showError(`Ошибка сети: ${ error }`);
+          return throwError(() => error);
+        })
+      )
+      .subscribe();
   }
-  
+
   onDelete(post: IPost): void {
-    this.loaderService.showSpinner()
-    this.postService.deletePost(post).pipe(
-      tap(() => {
-        this.loaderService.hideSpinner();
-        this.messageService.showInfo('Пост удален');
-      }),
-      catchError((error: HttpErrorResponse) => {
-        this.messageService.showError(`Ошибка: ${ error }`);
-        return throwError(() => error);
-      })
-    ).subscribe();
+    this.loaderService.showSpinner();
+    this.postService
+      .deletePost(post)
+      .pipe(
+        tap(() => {
+          this.loaderService.hideSpinner();
+          this.messageService.showInfo('Пост удален');
+        }),
+        catchError((error: HttpErrorResponse) => {
+          this.messageService.showError(`Ошибка: ${ error }`);
+          return throwError(() => error);
+        })
+      )
+      .subscribe();
   }
-  
+
   showModal(): void {
     this.ref = this.dialogService.open(PostEditComponent, {
       header: 'Редактирование поста',
       width: '50vw',
       modal: true,
       breakpoints: {
-          '960px': '75vw',
-          '640px': '90vw'
+        '960px': '75vw',
+        '640px': '90vw',
       },
-      data: this.selectedPost
+      data: this.selectedPost,
     });
   }
-  
+
 }

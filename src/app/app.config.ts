@@ -1,4 +1,10 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection, provideAppInitializer, inject } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
+  provideAppInitializer,
+  inject,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { providePrimeNG } from 'primeng/config';
@@ -14,18 +20,18 @@ import { authInterceptor } from '../features/auth/interceptors/auth.interceptor'
 import { AuthorizationService } from '../features/auth/services/authorization.service';
 
 const getPreset = (): Preset => {
-  const savedTheme: string = (localStorage.getItem('presetLabel')) || Theme.AURA;
-  switch(savedTheme) {
+  const savedTheme: string = localStorage.getItem('presetLabel') || Theme.AURA;
+  switch (savedTheme) {
     case Theme.NORA:
       return Nora;
-      
+
     case Theme.LARA:
       return Lara;
-      
+
     default:
       return Aura;
   }
-}
+};
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
@@ -36,12 +42,12 @@ export const appConfig: ApplicationConfig = {
     ),
     providePrimeNG({
       theme: {
-          preset: getPreset(),
-          options: {
-            darkModeSelector: '.p-dark'
-          }
-      }
+        preset: getPreset(),
+        options: {
+          darkModeSelector: '.p-dark',
+        },
+      },
     }),
-    provideAppInitializer(() => inject(AuthorizationService).initializeAuth())
-  ]
-}
+    provideAppInitializer(() => inject(AuthorizationService).initializeAuth()),
+  ],
+};

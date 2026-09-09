@@ -1,7 +1,7 @@
 <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
   <label>
     Title
-    <input type="text" formControlName="title">
+    <input type="text" formControlName="title" />
   </label>
   <label>
     Body
@@ -9,10 +9,10 @@
   </label>
   <label>
     User ID
-    <input type="number" formControlName="userId" min="1">
+    <input type="number" formControlName="userId" min="1" />
   </label>
   <label>
-    <input type="text" formControlName="tags" placeholder="tech, news, guide">
+    <input type="text" formControlName="tags" placeholder="tech, news, guide" />
   </label>
   <button type="submit" [disabled]="postForm.invalid">Create post</button>
 </form>
