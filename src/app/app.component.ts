@@ -13,37 +13,47 @@ import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, FooterComponent, HeaderComponent, RouterOutlet, MessageComponent, LoaderComponent],
+  imports: [
+    FormsModule,
+    FooterComponent,
+    HeaderComponent,
+    RouterOutlet,
+    MessageComponent,
+    LoaderComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+
   messageService: MessageService = inject(MessageService);
   messageStatus: typeof MessageStatus = MessageStatus;
-  isLoading: boolean = true;
-  
-  loaderService: LoaderService = inject(LoaderService)
-  
-  private localStorageService: LocalStorageService = inject(LocalStorageService);
-  
+  isLoading = true;
+
+  loaderService: LoaderService = inject(LoaderService);
+
+  private localStorageService: LocalStorageService =
+    inject(LocalStorageService);
+
   constructor() {
-    setInterval(() => this.isLoading = false, 2000);
+    setInterval(() => (this.isLoading = false), 2000);
   }
-  
+
   private isMainColor(color: Color): boolean {
     const mainColors: Color[] = [Color.RED, Color.BLUE, Color.GREEN];
     return mainColors.includes(color);
   }
-  
+
   private saveLastVisitDate(): void {
     const now: Date = new Date();
     this.localStorageService.setItem('last-visit', now.toISOString());
   }
-  
+
   private saveVisitCount(): void {
-    const currentCount: string = this.localStorageService.getItem('visit-count') || '0';
+    const currentCount: string =
+      this.localStorageService.getItem('visit-count') || '0';
     const newCount: number = parseInt(currentCount) + 1;
     this.localStorageService.setItem('visit-count', newCount.toString());
   }
-  
+
 }

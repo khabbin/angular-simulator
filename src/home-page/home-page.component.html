@@ -2,7 +2,7 @@
   <div class="banner-block">
     <div class="title-container container">
       <h1 class="banner-title">
-        насладись прогулкой в горах<br>с командой единомышленников
+        насладись прогулкой в горах<br />с командой единомышленников
       </h1>
     </div>
     <div class="super-search-forms-box container">
@@ -13,8 +13,7 @@
             id="city-select"
             class="bold programs-select"
             [(ngModel)]="selectedTourLocation"
-            required
-          >
+            required>
             <option [value]="undefined" hidden>Локация для тура</option>
             @for (city of cities; track city.value) {
               <option [value]="city.value">
@@ -32,11 +31,10 @@
             class="date-input bold"
             type="text"
             placeholder="Дата похода"
-            onfocus="(type='date')"
-            onblur="(!value) ? type='text' : null"
+            onfocus="type = 'date'"
+            onblur="!value ? (type = 'text') : null"
             [(ngModel)]="selectedTourDate"
-            required
-          >
+            required />
           <fa-icon [icon]="calendarIcon" class="form-control"></fa-icon>
           <span class="helper-text fs-14">укажите диапазон</span>
         </div>
@@ -46,19 +44,23 @@
             id="person-select"
             class="bold programs-select"
             required
-            [(ngModel)]="selectedPerson"
-          >
+            [(ngModel)]="selectedPerson">
             <option [value]="undefined" hidden>Участники</option>
-              @for (person of persons; track person.value) {
-                <option [value]="person.value">
-                  {{ person.label }}
-                </option>
-              }
+            @for (person of persons; track person.value) {
+              <option [value]="person.value">
+                {{ person.label }}
+              </option>
+            }
           </select>
           <fa-icon [icon]="angleDownIcon" class="form-control"></fa-icon>
           <span class="helper-text fs-14">выберите из списка</span>
         </div>
-        <button [disabled]="tourForm.invalid" class="send-form-button bold" id="program-select-button">Найти программу</button>
+        <button
+          [disabled]="tourForm.invalid"
+          class="send-form-button bold"
+          id="program-select-button">
+          Найти программу
+        </button>
       </form>
     </div>
     <div class="container">
@@ -68,8 +70,7 @@
           type="text"
           class="live-input"
           placeholder="Живой инпут"
-          [(ngModel)]="liveInputValue"
-        >
+          [(ngModel)]="liveInputValue" />
         <fa-icon [icon]="angleRightIcon"></fa-icon>
         <span class="live-input-value">{{ liveInputValue }}</span>
       </div>
@@ -80,23 +81,33 @@
 <section class="white-bg tour-programs">
   <div class="tour-programs-wrapper container">
     <div class="tour-videos">
-      <img src="/images/mountains.jpg" alt="second video" class="video">
+      <img src="/images/mountains.jpg" alt="second video" class="video" />
       <div class="current-video">
         <button class="play-button" id="tour-video-play-button">
           <fa-icon [icon]="playIcon"></fa-icon>
         </button>
-        <img src="/images/wooden-hut-alps.jpg" alt="current video" class="video">
+        <img
+          src="/images/wooden-hut-alps.jpg"
+          alt="current video"
+          class="video" />
       </div>
     </div>
     <div class="tour-info">
       <span class="main-pre-title">о нашем походе</span>
-      <h2 class="main-title">Исследуйте все горные массивы мира вместе с нами</h2>
-      <p class="tour-info-description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</p>
+      <h2 class="main-title">
+        Исследуйте все горные массивы мира вместе с нами
+      </h2>
+      <p class="tour-info-description fs-18">
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то
+        есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни
+        из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных
+        слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической
+        латинской литературе.
+      </p>
       <button
-      class="main-green-btn tour-info-button"
-      id="tour-program-button"
-      (click)="messageService.showWarn('Информация выслана на почту')"
-      >
+        class="main-green-btn tour-info-button"
+        id="tour-program-button"
+        (click)="messageService.showWarn('Информация выслана на почту')">
         Программа тура
       </button>
     </div>
@@ -108,10 +119,21 @@
     <div class="offers-block">
       <span class="main-pre-title">наше предложение</span>
       <h2 class="main-title">Лучшие программы для тебя</h2>
-      <p class="description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</p>
+      <p class="description fs-18">
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то
+        есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни
+        из колледжа.
+      </p>
       <div class="offers-list">
         @for (offer of offers; track offer.id) {
-          <div class="offer" [class.active-service]="offer.id === selectedServiceId" (click)="selectOffer(offer.id)" id="offer-select-button">
+          <div
+            class="offer"
+            role="button"
+            tabindex="0"
+            [class.active-service]="offer.id === selectedServiceId"
+            (click)="selectOffer(offer.id)"
+            id="offer-select-button"
+            (keydown.enter)="selectOffer(offer.id)">
             <div class="icon-bg" [style.background-color]="offer.bgColor">
               <fa-icon [icon]="offer.icon"></fa-icon>
             </div>
@@ -125,16 +147,17 @@
       <button
         class="main-green-btn programs-price-btn"
         id="program-prices-button"
-        (click)="messageService.showInfo('Стоимость отправлена на почту')"
-      >
+        (click)="messageService.showInfo('Стоимость отправлена на почту')">
         Стоимость программ
       </button>
     </div>
     <div class="photos-block flex">
-      <img class="top-left-photo" src="images/blue-lagoons-coffee.jpg">
-      <img class="top-right-photo" src="images/canyon-view-hiker.jpg">
-      <img class="bottom-left-photo" src="images/winter-extreme-snowmobile.jpg">
-      <img class="bottom-right-photo" src="images/autumn-mountain-river.jpg">
+      <img class="top-left-photo" src="images/blue-lagoons-coffee.jpg" alt="coffee"/>
+      <img class="top-right-photo" src="images/canyon-view-hiker.jpg" alt="canyon"/>
+      <img
+        class="bottom-left-photo"
+        src="images/winter-extreme-snowmobile.jpg" alt="snowmobile"/>
+      <img class="bottom-right-photo" src="images/autumn-mountain-river.jpg" alt=""/>
     </div>
   </div>
 </section>
@@ -151,13 +174,18 @@
           <fa-icon [icon]="starIcon"></fa-icon>
           <span class="rating bold"> {{ tour.rating.toFixed(1) }}</span>
         </div>
-        <img class="tour-image" [src]="'/images/' + tour.image + '.jpg'" alt="tour image">
+        <img
+          class="tour-image"
+          [src]="'/images/' + tour.image + '.jpg'"
+          alt="tour image" />
         <div class="tour-card-wrapper">
           <div class="titles">
             <span class="title fs-24 bold">{{ tour.title }}</span>
             <span class="subtitle fs-14">{{ tour.subtitle }}</span>
           </div>
-          <div class="price flex ai-center jc-center">{{ tour.price }} &#36;</div>
+          <div class="price flex ai-center jc-center">
+            {{ tour.price }} &#36;
+          </div>
         </div>
       </div>
     }
@@ -165,8 +193,7 @@
   <button
     class="main-green-btn tours-rating"
     id="tours-rating-button"
-    (click)="messageService.showSuccess('Рейтинг получен')"
-  >
+    (click)="messageService.showSuccess('Рейтинг получен')">
     Рейтинг направлений
   </button>
 </section>
@@ -179,7 +206,10 @@
   <div class="container travel-cards-container">
     @for (article of blogPosts; track article.id) {
       <div class="blog-article flex ai-center space-between">
-        <img [src]="'/images/' + article.image + '.jpg'" alt="blog article" class="blog-image">
+        <img
+          [src]="'/images/' + article.image + '.jpg'"
+          alt="blog article"
+          class="blog-image" />
         <div class="blog-information flex space-between">
           <div class="text-wrapper">
             <span class="fs-24 bold">{{ article.title }}</span>
@@ -196,8 +226,7 @@
   <button
     id="other-materials-button"
     class="main-green-btn other-materials-button"
-    (click)="messageService.showError('Материалы не доступны')"
-  >
+    (click)="messageService.showError('Материалы не доступны')">
     Другие материалы
   </button>
 </section>
@@ -208,12 +237,12 @@
     <span class="main-title">Делимся впечатлениями</span>
   </div>
   <div class="container portfolio">
-    <img src="/images/cappadocia_balloons.jpg" class="rectangular-image">
-    <img src="/images/vintage_travel_journal.jpg" class="square-image">
-    <img src="/images/tropical_beach_boats.jpg" class="square-image">
-    <img src="/images/horseshoe_bend_arizona.jpg" class="rectangular-image">
-    <img src="/images/travel_flatlay_camera.jpg" class="square-image">
-    <img src="/images/burj_al_arab_dubai.jpg" class="square-image">
+    <img src="/images/cappadocia_balloons.jpg" class="rectangular-image" alt="ballons"/>
+    <img src="/images/vintage_travel_journal.jpg" class="square-image" alt="journal"/>
+    <img src="/images/tropical_beach_boats.jpg" class="square-image" alt="beach"/>
+    <img src="/images/horseshoe_bend_arizona.jpg" class="rectangular-image" alt="arizona"/>
+    <img src="/images/travel_flatlay_camera.jpg" class="square-image" alt="camera"/>
+    <img src="/images/burj_al_arab_dubai.jpg" class="square-image" alt="dubai"/>
   </div>
   <button class="main-green-btn" id="pinterest-subscribe">Наш pinterest</button>
 </section>

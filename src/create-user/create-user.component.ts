@@ -1,5 +1,11 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
-import { FormGroup, ReactiveFormsModule, Validators, FormControl, FormBuilder } from '@angular/forms';
+import {
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+  FormControl,
+  FormBuilder,
+} from '@angular/forms';
 import { IUser } from '../interfaces/IUser';
 import { BoldOnHoverDirective } from '../app/directives/bold-on-hover.directive';
 
@@ -10,68 +16,60 @@ import { BoldOnHoverDirective } from '../app/directives/bold-on-hover.directive'
   styleUrl: './create-user.component.scss',
 })
 export class CreateUserComponent {
-  
   @Output() createUser: EventEmitter<IUser> = new EventEmitter<IUser>();
-  
+
   private fb: FormBuilder = inject(FormBuilder);
-  
+
   userForm: FormGroup = this.fb.group({
-    name: ['', [
-      Validators.required,
-      Validators.minLength(2),
-      Validators.maxLength(100)
-    ]],
-    username: ['', [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(30)
-    ]],
-    email: ['', [
-      Validators.required,
-      Validators.email,
-      Validators.maxLength(100)
-    ]],
-    phone: ['', [
-      Validators.required,
-      Validators.minLength(10),
-      Validators.maxLength(25)
-    ]],
+    name: [
+      '',
+      [Validators.required, Validators.minLength(2), Validators.maxLength(100)],
+    ],
+    username: [
+      '',
+      [Validators.required, Validators.minLength(3), Validators.maxLength(30)],
+    ],
+    email: [
+      '',
+      [Validators.required, Validators.email, Validators.maxLength(100)],
+    ],
+    phone: [
+      '',
+      [Validators.required, Validators.minLength(10), Validators.maxLength(25)],
+    ],
     website: ['', Validators.maxLength(100)],
-    
+
     address: this.fb.group({
-      city: ['', [
-        Validators.required,
-        Validators.maxLength(50)
-      ]],
-      street: ['', [
-        Validators.required,
-        Validators.maxLength(100)
-      ]],
+      city: ['', [Validators.required, Validators.maxLength(50)]],
+      street: ['', [Validators.required, Validators.maxLength(100)]],
       suite: ['', Validators.maxLength(50)],
-      zipcode: ['', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(10)
-      ]],
-      
+      zipcode: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(10),
+        ],
+      ],
+
       geo: this.fb.group({
         lat: ['', Validators.required],
-        lng: ['', Validators.required]
-      })
+        lng: ['', Validators.required],
+      }),
     }),
-    
+
     company: this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(50)]],
       catchPhrase: ['', Validators.maxLength(200)],
-      bs: ['', Validators.maxLength(100)]
-    })
+      bs: ['', Validators.maxLength(100)],
+    }),
   });
-  
+
   onSubmit(): void {
     if (this.userForm.valid) {
       const user: IUser = {
-        ...this.userForm.getRawValue() as IUser,
-        id: Date.now()
+        ...(this.userForm.getRawValue() as IUser),
+        id: Date.now(),
       };
       this.createUser.emit(user);
       this.userForm.reset();

@@ -9,34 +9,34 @@ export class GradientBorderDirective {
   @Input('appGradientBorder') config: IGradientBorder = {
     colors: ['red', 'black'],
     thickness: '2px',
-    delay: 1000
+    delay: 1000,
   };
-  
+
   private timeoutId!: number;
-    
-  @HostBinding('class.gradient-border-active') isActive: boolean = false;
-  
+
+  @HostBinding('class.gradient-border-active') isActive = false;
+
   @HostBinding('style.--gradient-colors')
-    get colors(): string {
-      return this.config.colors!.join(', ');
-    }
-  
+  get colors(): string {
+    return this.config.colors!.join(', ');
+  }
+
   @HostBinding('style.--border-thickness')
-    get thickness(): string {
-      return this.config.thickness!;
-    }
-  
+  get thickness(): string {
+    return this.config.thickness!;
+  }
+
   @HostListener('mouseenter')
-    onMouseEnter(): void {
-      this.timeoutId = setTimeout(() => {
-        this.isActive = true;
-      }, this.config.delay!);
-    }
-  
+  onMouseEnter(): void {
+    this.timeoutId = setTimeout(() => {
+      this.isActive = true;
+    }, this.config.delay!);
+  }
+
   @HostListener('mouseleave')
-    onMouseLeave(): void {
-      clearTimeout(this.timeoutId);
-      this.isActive = false;
-    }
-  
+  onMouseLeave(): void {
+    clearTimeout(this.timeoutId);
+    this.isActive = false;
+  }
+
 }

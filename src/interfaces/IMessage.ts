@@ -1,4 +1,4 @@
-import { MessageStatus } from "../enums/MessageStatus"
+import { MessageStatus } from '../enums/MessageStatus';
 
 export interface IMessage {
   type: MessageStatus;

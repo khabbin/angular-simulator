@@ -3,7 +3,12 @@ import { ILink } from '../interfaces/ILink';
 import { RouterLink } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faAngleDown, IconDefinition } from '@fortawesome/free-solid-svg-icons';
-import { faTelegram, faVk, faPinterest, faSkype  } from '@fortawesome/free-brands-svg-icons';
+import {
+  faTelegram,
+  faVk,
+  faPinterest,
+  faSkype,
+} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-footer',
@@ -12,57 +17,57 @@ import { faTelegram, faVk, faPinterest, faSkype  } from '@fortawesome/free-brand
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  
+
   faAngledown: IconDefinition = faAngleDown;
   faTelegram: IconDefinition = faTelegram;
   faVk: IconDefinition = faVk;
   faPinterest: IconDefinition = faPinterest;
   faSkype: IconDefinition = faSkype;
-  
+
   footerServicesLinks: ILink[] = [
     {
       title: 'Прогулки в горы летом',
-      path: '/example'
+      path: '/example',
     },
     {
       title: 'Зимние походы в горы',
-      path: '/example'
+      path: '/example',
     },
     {
       title: 'Посещение храмов в горах',
-      path: '/example'
+      path: '/example',
     },
     {
       title: 'Экстремальные виды туризма',
-      path: '/example'
+      path: '/example',
     },
     {
       title: 'Походы в джунглях Амазонии',
-      path: '/example'
+      path: '/example',
     },
     {
       title: 'Поездка в Африку',
-      path: '/example'
+      path: '/example',
     },
   ];
-  
+
   footerImportantInfoLinks: ILink[] = [
     {
       title: 'Если вы врач - загляните сюда',
-      path: '/example'
+      path: '/example',
     },
     {
       title: 'Медицинская страховка, гарантии безопасности',
-      path: '/example'
+      path: '/example',
     },
     {
       title: 'Жизненно важные предметы для похода',
-      path: '/example'
+      path: '/example',
     },
     {
       title: 'Как собрать в долгий поход?',
-      path: '/example'
-    }
+      path: '/example',
+    },
   ];
   
 }
