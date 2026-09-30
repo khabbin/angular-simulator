@@ -2,7 +2,7 @@
   <div class="container flex jc-sb">
     <div class="company-logo">
       <img src="/images/company-logo.svg" alt="Логотип Румтибет" />
-      <p>{{ companyName }}</p>
+      <p>{{ config.companyName }}</p>
     </div>
     <div class="main-nav">
       <nav>
@@ -52,7 +52,7 @@
       </div>
     } @else {
       <div class="flex ai-center switch-items-container">
-        <span class="fs-18 semi-bold">{{ currentDateAndTime }}</span>
+        <span class="fs-18 semi-bold">{{ currentDateAndTime | date }}</span>
         <button
           class="main-white-btn switch-btn"
           (click)="toggleBlock()"
