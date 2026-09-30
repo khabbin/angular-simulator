@@ -8,15 +8,20 @@ import {
 } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { IAppConfig } from '../IAppConfig';
+import { APP_CONFIG } from '../app-configuration.token';
+import { inject } from '@angular/core';
 
 export const loggingInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn
 ) => {
+  const config: IAppConfig = inject(APP_CONFIG);
   const startTime: number = performance.now();
-  const { method, urlWithParams }: { method: string; urlWithParams: string } =
-    req;
-
+  const { method, urlWithParams }: { method: string; urlWithParams: string } = req;
+  
+  if(!config.enableLogs) return next(req);
+  
   return next(req).pipe(
     tap((event: HttpEvent<unknown>) => {
       if (event.type === HttpEventType.Response) {

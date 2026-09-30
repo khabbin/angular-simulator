@@ -7,14 +7,16 @@ import Nora from '@primeuix/themes/nora';
 import { usePreset } from '@primeuix/themes';
 import { ITheme } from '../../interfaces/ITheme';
 import { Theme } from '../../enums/Theme';
+import { APP_CONFIG } from '../app-configuration.token';
+import { IAppConfig } from '../IAppConfig';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ThemeService {
 
-  private localStorageService: LocalStorageService =
-    inject(LocalStorageService);
+  private config: IAppConfig = inject(APP_CONFIG);
+  private localStorageService: LocalStorageService = inject(LocalStorageService);
 
   presets: ITheme[] = [
     { name: 'Aura', preset: Aura, value: Theme.AURA },
@@ -22,14 +24,12 @@ export class ThemeService {
     { name: 'Nora', preset: Nora, value: Theme.NORA },
   ];
 
-  private isDarkModeSubject: BehaviorSubject<boolean> =
-    new BehaviorSubject<boolean>(this.getInitialDarkMode());
+  private isDarkModeSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.getInitialDarkMode());
 
   isDarkMode$: Observable<boolean> = this.isDarkModeSubject.asObservable().pipe(
     tap((theme: boolean) => {
       const element: HTMLElement = document.querySelector('html')!;
       element.classList.toggle('p-dark', theme);
-      // theme ? element.classList.add('p-dark') : element.classList.remove('p-dark');
     })
   );
 
@@ -40,11 +40,13 @@ export class ThemeService {
   preset$: Observable<Theme> = this.presetSubject.asObservable();
 
   toggleTheme(theme: boolean): void {
+    if (!this.config.enableTheming) return;
     this.isDarkModeSubject.next(theme);
     this.localStorageService.setItem('theme', theme);
   }
 
   onPresetChange(presetValue: Theme): void {
+    if (!this.config.enableTheming) return;
     const preset: ITheme | undefined = this.presets.find(
       (p: ITheme) => p.value === presetValue
     );

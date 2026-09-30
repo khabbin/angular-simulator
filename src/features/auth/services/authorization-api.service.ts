@@ -13,16 +13,16 @@ export class AuthorizationApiService {
   private readonly api: string = 'https://dummyjson.com/auth';
   http: HttpClient = inject(HttpClient);
 
-  login(formValue: ILogin): Observable<IToken> {
-    return this.http.post<IToken>(`${ this.api }/login`, { formValue });
+  login(formValue: ILogin, sessionTimeout: number): Observable<IToken> {
+    return this.http.post<IToken>(`${ this.api }/login`, { formValue, sessionTimeout });
   }
 
   getAuthUser(): Observable<IAuthUser> {
     return this.http.get<IAuthUser>(`${ this.api }/me`);
   }
 
-  refreshSession(refreshToken: string): Observable<IToken> {
-    return this.http.post<IToken>(`${ this.api }/refresh`, { refreshToken });
+  refreshSession(refreshToken: string, sessionTimeout: number): Observable<IToken> {
+    return this.http.post<IToken>(`${ this.api }/refresh`, { refreshToken, sessionTimeout });
   }
 
 }
