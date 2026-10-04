@@ -62,15 +62,16 @@
       </div>
     }
   </div>
-  <p-toggleswitch
-    id="theme-switch-button"
-    [ngModel]="isDarkMode$ | async"
-    ,
-    (onChange)="toggleTheme($event)">
-    <ng-template #handle let-checked="checked">
-      <fa-icon [icon]="checked ? faMoon : faSun"></fa-icon>
-    </ng-template>
-  </p-toggleswitch>
+  @if(config.enableTheming) {
+    <p-toggleswitch
+      id="theme-switch-button"
+      [ngModel]="isDarkMode$ | async",
+      (onChange)="toggleTheme($event)">
+      <ng-template #handle let-checked="checked">
+        <fa-icon [icon]="checked ? faMoon : faSun"></fa-icon>
+      </ng-template>
+    </p-toggleswitch>
+  }
   <div class="card flex justify-center">
     <p-selectbutton
       id="preset-select-button"

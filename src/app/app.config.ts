@@ -38,8 +38,14 @@ const getPreset = (): Preset => {
 };
 export const appConfig: ApplicationConfig = {
   providers: [
-    { provide: DATE_PIPE_DEFAULT_OPTIONS, useValue: { dateFormat: 'dd.MM.yyyy HH:mm' }},
-    { provide: APP_CONFIG, useValue: configuration },
+    {
+      provide: DATE_PIPE_DEFAULT_OPTIONS,
+      useValue: { dateFormat: 'dd.MM.yyyy HH:mm' }
+    },
+    {
+      provide: APP_CONFIG,
+      useValue: configuration
+    },
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),
