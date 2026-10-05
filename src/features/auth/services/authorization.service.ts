@@ -16,12 +16,15 @@ import { MessageService } from '../../../app/services/message.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ILogin } from '../interfaces/ILogin';
+import { IAppConfig } from '../../../app/IAppConfig';
+import { APP_CONFIG } from '../../../app/app-configuration.token';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizationService {
 
+  private config: IAppConfig = inject(APP_CONFIG);
   private authApiService: AuthorizationApiService = inject(
     AuthorizationApiService
   );
@@ -47,7 +50,7 @@ export class AuthorizationService {
   }
 
   login(credentials: ILogin): Observable<IAuthUser> {
-    return this.authApiService.login(credentials).pipe(
+    return this.authApiService.login(credentials, this.config.sessionTimeout).pipe(
       tap((tokens: IToken) => {
         this.saveTokens(tokens);
       }),
@@ -93,7 +96,7 @@ export class AuthorizationService {
     const tokens: IToken = this.getTokens()!;
     const refreshToken: string = tokens?.refreshToken;
 
-    return this.authApiService.refreshSession(refreshToken).pipe(
+    return this.authApiService.refreshSession(refreshToken, this.config.sessionTimeout).pipe(
       tap((response: IToken) => {
         this.saveTokens(response);
       })

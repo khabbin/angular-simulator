@@ -18,6 +18,10 @@ import { loggingInterceptor } from './interceptors/http-logging.interceptor';
 import { errorInterceptor } from './interceptors/http-error.interceptor';
 import { authInterceptor } from '../features/auth/interceptors/auth.interceptor';
 import { AuthorizationService } from '../features/auth/services/authorization.service';
+import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
+import { APP_CONFIG } from './app-configuration.token';
+import { configuration } from './configuration';
+
 
 const getPreset = (): Preset => {
   const savedTheme: string = localStorage.getItem('presetLabel') || Theme.AURA;
@@ -34,6 +38,14 @@ const getPreset = (): Preset => {
 };
 export const appConfig: ApplicationConfig = {
   providers: [
+    {
+      provide: DATE_PIPE_DEFAULT_OPTIONS,
+      useValue: { dateFormat: 'dd.MM.yyyy HH:mm' }
+    },
+    {
+      provide: APP_CONFIG,
+      useValue: configuration
+    },
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideZoneChangeDetection(),

@@ -10,7 +10,7 @@ import {
   IconDefinition,
 } from '@fortawesome/angular-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import {
   SelectButtonChangeEvent,
   SelectButtonModule,
@@ -18,6 +18,8 @@ import {
 import { ITheme } from '../interfaces/ITheme';
 import { Observable } from 'rxjs';
 import { Theme } from '../enums/Theme';
+import { IAppConfig } from '../app/IAppConfig';
+import { APP_CONFIG } from '../app/app-configuration.token';
 
 @Component({
   selector: 'app-header',
@@ -29,20 +31,21 @@ import { Theme } from '../enums/Theme';
     ToggleSwitchModule,
     AsyncPipe,
     SelectButtonModule,
+    DatePipe
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   
+  private config: IAppConfig = inject(APP_CONFIG);
   faMoon: IconDefinition = faMoon;
   faSun: IconDefinition = faSun;
   themeService: ThemeService = inject(ThemeService);
   isDarkMode$: Observable<boolean> = this.themeService.isDarkMode$;
   isDateView = true;
   clicksCount = 0;
-  currentDateAndTime!: string;
-  companyName = 'румтибет';
+  currentDateAndTime: Date = new Date(); 
 
   links: ILink[] = [
     {
@@ -65,7 +68,7 @@ export class HeaderComponent {
 
   constructor() {
     setInterval(
-      () => (this.currentDateAndTime = new Date().toLocaleString()),
+      () => (this.currentDateAndTime = new Date()),
       1000
     );
   }

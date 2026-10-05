@@ -2,7 +2,7 @@
   <div class="container flex jc-sb">
     <div class="company-logo">
       <img src="/images/company-logo.svg" alt="Логотип Румтибет" />
-      <p>{{ companyName }}</p>
+      <p>{{ config.companyName }}</p>
     </div>
     <div class="main-nav">
       <nav>
@@ -52,7 +52,7 @@
       </div>
     } @else {
       <div class="flex ai-center switch-items-container">
-        <span class="fs-18 semi-bold">{{ currentDateAndTime }}</span>
+        <span class="fs-18 semi-bold">{{ currentDateAndTime | date }}</span>
         <button
           class="main-white-btn switch-btn"
           (click)="toggleBlock()"
@@ -62,15 +62,16 @@
       </div>
     }
   </div>
-  <p-toggleswitch
-    id="theme-switch-button"
-    [ngModel]="isDarkMode$ | async"
-    ,
-    (onChange)="toggleTheme($event)">
-    <ng-template #handle let-checked="checked">
-      <fa-icon [icon]="checked ? faMoon : faSun"></fa-icon>
-    </ng-template>
-  </p-toggleswitch>
+  @if(config.enableTheming) {
+    <p-toggleswitch
+      id="theme-switch-button"
+      [ngModel]="isDarkMode$ | async",
+      (onChange)="toggleTheme($event)">
+      <ng-template #handle let-checked="checked">
+        <fa-icon [icon]="checked ? faMoon : faSun"></fa-icon>
+      </ng-template>
+    </p-toggleswitch>
+  }
   <div class="card flex justify-center">
     <p-selectbutton
       id="preset-select-button"
